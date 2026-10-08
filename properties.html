@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- include:head -->
+    <link rel="stylesheet" href="/src/styles/pages.css" />
+    <title>Properties — Heaven</title>
+    <meta name="description" content="Browse luxury villas, family houses and apartments for sale and rent across Los Angeles. Filter by area, budget and bedrooms, save favourites and compare." />
+    <meta property="og:title" content="Properties — Heaven" />
+  </head>
+  <body data-page="properties">
+    <!-- include:header -->
+
+    <main id="main">
+      <section class="page-hero" style="padding-bottom: 0">
+        <div class="container">
+          <div class="listing-head">
+            <div>
+              <span class="eyebrow">Properties</span>
+              <h1 data-split>Find a place you’ll love</h1>
+            </div>
+            <p class="lead">Every listing is visited by our team. Save the ones you love, compare up to three, or let <button type="button" data-open-quiz style="text-decoration: underline; text-underline-offset: 3px; color: var(--accent-text)">Heaven Match</button> rank them for you.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top: 0">
+        <div class="container">
+          <!-- include:filters -->
+          <div class="saved-note" data-saved-note hidden>
+            <span>Showing your <strong>saved homes</strong>.</span>
+            <a class="btn btn--ghost btn--sm" href="/properties.html">Show all homes</a>
+          </div>
+          <div class="results-bar">
+            <span data-results-count>Loading homes…</span>
+            <div class="results-bar__right">
+              <label class="sr-only" for="f-sort">Sort by</label>
+              <select id="f-sort" class="select" style="height: 42px; border-radius: 999px; width: auto" data-filter="sort">
+                <option value="featured">Featured first</option>
+                <option value="match">Best match for me</option>
+                <option value="price-asc">Price: low to high</option>
+                <option value="price-desc">Price: high to low</option>
+                <option value="newest">Newest builds</option>
+                <option value="size">Largest</option>
+              </select>
+              <div class="view-toggle" role="group" aria-label="Layout">
+                <button type="button" data-view="grid" aria-pressed="true" aria-label="Grid view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></button>
+                <button type="button" data-view="list" aria-pressed="false" aria-label="List view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg></button>
+              </div>
+            </div>
+          </div>
+          <div class="results" data-results aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- include:cta-band -->
+    </main>
+
+    <!-- include:footer -->
+    <script type="module" src="/src/js/pages/listings.js"></script>
+  </body>
+</html>

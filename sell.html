@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- include:head -->
+    <link rel="stylesheet" href="/src/styles/pages.css" />
+    <title>Sell Your Home — Instant Valuation | Heaven</title>
+    <meta name="description" content="Get an instant estimate of your Los Angeles home's value, then let Heaven's cinematic marketing and expert negotiators bring the right buyers to your door." />
+    <meta property="og:title" content="Sell your home with Heaven" />
+    <link rel="preload" as="image" href="/images/villa7-lg.webp" />
+  </head>
+  <body data-page="sell" data-header="light">
+    <!-- include:header -->
+
+    <main id="main">
+      <section class="banner">
+        <div class="banner__frame">
+          <img class="tone" src="/images/villa7-lg.webp" srcset="/images/villa7-sm.webp 860w, /images/villa7-lg.webp 1600w" sizes="100vw" alt="" fetchpriority="high" data-parallax="0.12" />
+          <span class="eyebrow">Sell with Heaven</span>
+          <div class="banner__row">
+            <div>
+              <h1 data-split>What is your home really worth?</h1>
+              <p class="lead">Get an instant estimate in under a minute. A local expert then confirms it in person, free and with no obligation.</p>
+            </div>
+            <div class="banner__stats">
+              <div class="stat-chip"><div><strong>18 days</strong><span>Average time to sell</span></div></div>
+              <div class="stat-chip"><div><strong>101.6%</strong><span>Of asking price</span></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="valuation">
+        <div class="container">
+          <div class="valuation" data-reveal>
+            <form class="valuation__form" data-valuation novalidate>
+              <span class="eyebrow">Instant valuation</span>
+              <h2 style="font-size: clamp(1.8rem, 3.4vw, 2.6rem); margin: 14px 0 22px">Tell us about your home</h2>
+              <div class="form-grid">
+                <div class="field"><label for="v-city">Area</label><select id="v-city" class="select" name="city" data-v-city></select></div>
+                <div class="field"><label for="v-type">Property type</label><select id="v-type" class="select" name="type"><option>House</option><option>Villa</option><option>Apartment</option><option>Estate</option></select></div>
+                <div class="field"><label for="v-beds">Bedrooms</label><select id="v-beds" class="select" name="beds"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6+</option></select></div>
+                <div class="field"><label for="v-sqft">Size (ft²)</label><input id="v-sqft" class="input" name="sqft" type="number" inputmode="numeric" min="300" max="30000" value="2400" /></div>
+                <div class="field full">
+                  <span class="label">Condition</span>
+                  <div class="interest" role="radiogroup" aria-label="Condition">
+                    <label><input type="radio" name="cond" value="0.86" /><span>Needs work</span></label>
+                    <label><input type="radio" name="cond" value="1" checked /><span>Good</span></label>
+                    <label><input type="radio" name="cond" value="1.12" /><span>Renovated</span></label>
+                    <label><input type="radio" name="cond" value="1.2" /><span>New build</span></label>
+                  </div>
+                </div>
+                <div class="field full">
+                  <span class="label">Highlights</span>
+                  <div class="interest">
+                    <label><input type="checkbox" name="pool" value="0.06" /><span>Pool</span></label>
+                    <label><input type="checkbox" name="view" value="0.08" /><span>Ocean / city view</span></label>
+                    <label><input type="checkbox" name="garden" value="0.03" /><span>Large garden</span></label>
+                    <label><input type="checkbox" name="garage" value="0.02" /><span>Garage</span></label>
+                    <label><input type="checkbox" name="smart" value="0.02" /><span>Smart home</span></label>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="valuation__result" aria-live="polite">
+              <span class="eyebrow">Estimated value</span>
+              <div class="valuation__value" data-v-value>$0</div>
+              <div class="valuation__range" data-v-range></div>
+              <div class="valuation__bar"><span></span><i></i></div>
+              <p class="valuation__note">An indicative range based on recent sales in your area. Book a free in-person valuation for an exact figure.</p>
+              <a class="btn btn--light" href="/contact.html?interest=sell" style="justify-self: start">Book a free valuation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--alt">
+        <div class="container split">
+          <div class="split__media" data-reveal="clip"><img class="tone" src="/images/int1-lg.webp" srcset="/images/int1-sm.webp 860w, /images/int1-lg.webp 1600w" sizes="(max-width: 900px) 100vw, 50vw" alt="Staged living room with warm evening light" loading="lazy" data-parallax="0.1" /></div>
+          <div class="split__text">
+            <span class="eyebrow">Why Heaven</span>
+            <h2 data-split>Marketing that makes buyers fall in love</h2>
+            <p class="lead">Every home we list gets the full treatment, with no upsells and no surprises.</p>
+            <ul class="ticks">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span><strong>Golden-hour photography &amp; film</strong>, plus a 3D floor plan and virtual tour</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span><strong>Staging advice</strong> from our interior team, often for less than you’d think</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span><strong>Private buyer network</strong> of 12,000+ qualified buyers before you go public</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span><strong>Weekly reports</strong> with every view, enquiry and piece of feedback</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head section-head--split">
+            <div>
+              <span class="eyebrow">The launch plan</span>
+              <h2 data-split>From valuation to sold</h2>
+            </div>
+            <p class="lead">A clear six-week plan, tailored to your home and your timeline.</p>
+          </div>
+          <div class="steps">
+            <div class="step" data-reveal><h3>Valuation</h3><p>An in-person visit and a pricing strategy based on live market data.</p></div>
+            <div class="step" data-reveal><h3>Prepare &amp; stage</h3><p>Small changes, big returns. We coordinate trusted trades if needed.</p></div>
+            <div class="step" data-reveal><h3>Shoot &amp; launch</h3><p>Photography, film and a private preview for our buyer network.</p></div>
+            <div class="step" data-reveal><h3>Viewings &amp; offers</h3><p>Accompanied viewings, honest feedback and skilled negotiation.</p></div>
+            <div class="step" data-reveal><h3>Close</h3><p>Escrow, disclosures and a stress-free handover of the keys.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--alt testimonials">
+        <div class="container">
+          <span class="eyebrow">Seller stories</span>
+          <figure class="t-slide is-active" style="margin-top: 26px">
+            <blockquote>“Nine days, three offers, and a price we didn’t dare hope for. The film they made of our home still makes us emotional.”</blockquote>
+            <figcaption><img src="/images/agent5-sm.webp" alt="" width="80" height="96" loading="lazy" /><span><strong>Richard &amp; Anne Hale</strong>Sold in Bel Air</span></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- include:cta-band -->
+    </main>
+
+    <!-- include:footer -->
+    <script type="module" src="/src/js/pages/sell.js"></script>
+  </body>
+</html>

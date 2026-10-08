@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- include:head -->
+    <link rel="stylesheet" href="/src/styles/pages.css" />
+    <title>Property — Heaven</title>
+    <meta name="description" content="Explore this Heaven home: photos, an interactive 3D floor plan, neighbourhood scores, a mortgage calculator and private tour booking." />
+    <meta property="og:title" content="Property — Heaven" />
+  </head>
+  <body data-page="property">
+    <!-- include:header -->
+
+    <main id="main" class="pd">
+      <div class="container" data-property>
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/properties.html">Properties</a><span>/</span><span data-crumb>…</span></nav>
+
+        <div class="pd-head">
+          <div>
+            <div style="display: flex; gap: 6px; margin-bottom: 14px" data-badges></div>
+            <h1 data-title>…</h1>
+            <p class="p-card__loc" data-address></p>
+          </div>
+          <div>
+            <div class="pd-price"><strong data-price></strong><span data-price-sub></span></div>
+            <div class="pd-actions">
+              <button class="btn btn--ghost btn--sm" type="button" data-fav-main>Save</button>
+              <button class="btn btn--ghost btn--sm" type="button" data-share>Share</button>
+              <label class="btn btn--ghost btn--sm compare-check" style="color: var(--text)"><input type="checkbox" data-compare-main /> Compare</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery" data-gallery></div>
+
+        <div class="pd-body">
+          <div class="pd-main">
+            <section class="pd-block">
+              <div class="keyfacts" data-keyfacts></div>
+            </section>
+
+            <section class="pd-block" data-reveal>
+              <h2>About this home</h2>
+              <p class="pd-desc" data-desc></p>
+              <ul class="ticks feature-list" data-features></ul>
+            </section>
+
+            <section class="pd-block" data-reveal>
+              <h2>Interactive 3D floor plan</h2>
+              <div class="floorplan" data-floorplan>
+                <canvas aria-label="3D floor plan. Drag to rotate, tap a room for details." role="img"></canvas>
+                <span class="badge floorplan__hint">Drag to rotate · tap a room</span>
+                <div class="floorplan__label glass" data-room-label><strong>Tap a room</strong><span>to see its size</span></div>
+              </div>
+              <div class="room-legend" data-room-legend></div>
+            </section>
+
+            <section class="pd-block" data-reveal>
+              <h2>The neighbourhood</h2>
+              <div class="vibe-grid" data-vibes></div>
+            </section>
+
+            <section class="pd-block" data-reveal data-mortgage-block>
+              <h2>Mortgage calculator</h2>
+              <div class="mortgage">
+                <div class="mortgage__inputs">
+                  <div class="field">
+                    <label for="m-price">Home price <output data-m-out="price"></output></label>
+                    <input id="m-price" type="range" min="300000" max="8000000" step="10000" data-m="price" />
+                  </div>
+                  <div class="field">
+                    <label for="m-down">Down payment <output data-m-out="down"></output></label>
+                    <input id="m-down" type="range" min="5" max="60" step="1" value="20" data-m="down" />
+                  </div>
+                  <div class="field">
+                    <label for="m-rate">Interest rate <output data-m-out="rate"></output></label>
+                    <input id="m-rate" type="range" min="3" max="9" step="0.05" value="6.5" data-m="rate" />
+                  </div>
+                  <div class="field">
+                    <span class="label">Loan term</span>
+                    <div class="seg" role="group" aria-label="Loan term" data-term>
+                      <button type="button" data-years="15" aria-pressed="false">15 yrs</button>
+                      <button type="button" data-years="20" aria-pressed="false">20 yrs</button>
+                      <button type="button" data-years="30" aria-pressed="true">30 yrs</button>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="donut">
+                    <svg viewBox="0 0 120 120" aria-hidden="true">
+                      <circle cx="60" cy="60" r="50" stroke="var(--line)" />
+                      <circle cx="60" cy="60" r="50" stroke="#d9773a" data-arc="pi" pathLength="100" stroke-dasharray="0 100" />
+                      <circle cx="60" cy="60" r="50" stroke="#e9a25f" data-arc="tax" pathLength="100" stroke-dasharray="0 100" />
+                      <circle cx="60" cy="60" r="50" stroke="#8a6658" data-arc="ins" pathLength="100" stroke-dasharray="0 100" />
+                    </svg>
+                    <div class="donut__center"><strong data-m-total>$0</strong><span>per month</span></div>
+                  </div>
+                  <div class="donut-legend">
+                    <span style="--c: #d9773a"><i></i>Principal &amp; interest <b data-m-pi></b></span>
+                    <span style="--c: #e9a25f"><i></i>Property tax <b data-m-tax></b></span>
+                    <span style="--c: #8a6658"><i></i>Insurance <b data-m-ins></b></span>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <aside class="pd-side">
+            <div class="agent-card" data-agent></div>
+            <div class="tour-card">
+              <h3>Book a private tour</h3>
+              <p>Choose a day; your agent confirms within the hour.</p>
+              <form class="tour-form" data-tour novalidate>
+                <div class="days" data-days role="group" aria-label="Choose a day"></div>
+                <label class="sr-only" for="t-time">Time</label>
+                <select id="t-time" class="select" name="time"><option>10:00 am</option><option>12:00 pm</option><option selected>2:00 pm</option><option>4:00 pm</option><option>6:00 pm · golden hour</option></select>
+                <div class="seg" role="group" aria-label="Tour type" data-tour-type style="width: 100%">
+                  <button type="button" aria-pressed="true" style="flex: 1">In person</button>
+                  <button type="button" aria-pressed="false" style="flex: 1">Video call</button>
+                </div>
+                <div class="field"><label class="sr-only" for="t-name">Name</label><input id="t-name" class="input" name="name" placeholder="Your name" autocomplete="name" required /><span class="error"></span></div>
+                <div class="field"><label class="sr-only" for="t-email">Email</label><input id="t-email" class="input" name="email" type="email" placeholder="Email address" autocomplete="email" required /><span class="error"></span></div>
+                <button class="btn btn--dark btn--block" type="submit">Request tour <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+              </form>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head section-head--split">
+            <div>
+              <span class="eyebrow">You may also love</span>
+              <h2 data-split>Similar homes</h2>
+            </div>
+            <div class="carousel-btns" style="justify-self: end; align-self: end">
+              <button class="icon-btn btn-outline" type="button" data-carousel-prev aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 6l-6 6 6 6"/></svg></button>
+              <button class="icon-btn btn-outline" type="button" data-carousel-next aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 6l6 6-6 6"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="carousel" data-carousel><div class="carousel__track" data-similar></div></div>
+        <div class="container" data-recent-wrap hidden style="margin-top: 48px">
+          <span class="eyebrow">Recently viewed</span>
+          <div class="recent" style="margin-top: 18px" data-recent></div>
+        </div>
+      </section>
+    </main>
+
+    <div class="lightbox" data-lightbox aria-hidden="true" role="dialog" aria-label="Photo viewer">
+      <button class="icon-btn lb-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <button class="icon-btn lb-prev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 6l-6 6 6 6"/></svg></button>
+      <img alt="" />
+      <button class="icon-btn lb-next" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 6l6 6-6 6"/></svg></button>
+      <span class="lb-count"></span>
+    </div>
+
+    <!-- include:footer -->
+    <script type="module" src="/src/js/pages/property.js"></script>
+  </body>
+</html>

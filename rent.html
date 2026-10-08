@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- include:head -->
+    <link rel="stylesheet" href="/src/styles/pages.css" />
+    <title>Rent a Home — Heaven</title>
+    <meta name="description" content="Verified rental homes in Los Angeles, from skyline lofts to furnished villas. Fast applications, clear lease terms and pet-friendly options." />
+    <meta property="og:title" content="Rent a Home — Heaven" />
+    <link rel="preload" as="image" href="/images/int2-lg.webp" />
+  </head>
+  <body data-page="rent" data-status="rent" data-header="light">
+    <!-- include:header -->
+
+    <main id="main">
+      <section class="banner">
+        <div class="banner__frame">
+          <img class="tone" src="/images/int2-lg.webp" srcset="/images/int2-sm.webp 860w, /images/int2-lg.webp 1600w" sizes="100vw" alt="" fetchpriority="high" data-parallax="0.12" />
+          <span class="eyebrow">Rent with Heaven</span>
+          <div class="banner__row">
+            <div>
+              <h1 data-split>Move-in ready homes, without the runaround</h1>
+              <p class="lead">Every rental is verified by our team. Apply online, sign digitally and get your keys in days.</p>
+            </div>
+            <div class="banner__stats"><div class="stat-chip"><div><strong>48h</strong><span>Typical approval</span></div></div><div class="stat-chip"><div><strong>100%</strong><span>Viewed in person</span></div></div><div class="stat-chip"><div><strong>12 mo</strong><span>Standard lease</span></div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head section-head--split">
+            <div>
+              <span class="eyebrow">How it works</span>
+              <h2 data-split>From viewing to keys in days</h2>
+            </div>
+            <p class="lead">Questions along the way? Halo, our assistant, is available around the clock, and your agent is only a call away.</p>
+          </div>
+          <div class="steps"><div class="step" data-reveal><h3>Browse verified homes</h3><p>Every listing is visited and photographed by our team. No bait, no surprises.</p></div><div class="step" data-reveal><h3>Book a viewing</h3><p>Often the same week, in person or by live video.</p></div><div class="step" data-reveal><h3>Apply online</h3><p>ID, proof of income (usually 3× the rent) and references, all in one secure form.</p></div><div class="step" data-reveal><h3>Sign &amp; move in</h3><p>Digital signatures, a clear inventory and your keys handed over by your agent.</p></div></div>
+        </div>
+      </section>
+
+      <section class="section section--alt" id="listings">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Available now</span>
+            <h2 data-split>Homes to rent</h2>
+          </div>
+          <!-- include:filters -->
+          <div class="results-bar">
+            <span data-results-count></span>
+            <div class="results-bar__right">
+              <label class="sr-only" for="f-sort">Sort by</label>
+              <select id="f-sort" class="select" style="height: 42px; border-radius: 999px; width: auto" data-filter="sort">
+                <option value="featured">Featured first</option>
+                <option value="match">Best match for me</option>
+                <option value="price-asc">Price: low to high</option>
+                <option value="price-desc">Price: high to low</option>
+                <option value="newest">Newest builds</option>
+              </select>
+              <div class="view-toggle" role="group" aria-label="Layout">
+                <button type="button" data-view="grid" aria-pressed="true" aria-label="Grid view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></button>
+                <button type="button" data-view="list" aria-pressed="false" aria-label="List view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg></button>
+              </div>
+            </div>
+          </div>
+          <div class="results" data-results aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container split">
+          <div>
+            <span class="eyebrow">Good to know</span>
+            <h2 style="font-size: var(--fs-h2); margin-top: 16px" data-split>Frequently asked</h2>
+            <p class="lead" style="margin-top: 18px">Can’t see your question? <button type="button" data-open-chat style="color: var(--accent-text); text-decoration: underline; text-underline-offset: 3px">Ask Halo</button> or <a href="/contact.html" style="color: var(--accent-text); text-decoration: underline; text-underline-offset: 3px">contact an advisor</a>.</p>
+          </div>
+          <div class="faq"><details><summary>What do I need to apply?</summary><p>Photo ID, recent payslips or bank statements, references and a credit check. Most tenants earn around three times the monthly rent.</p></details><details><summary>Are pets allowed?</summary><p>Many of our homes are pet friendly; look for the “Pet friendly” tag or ask Halo. A small pet deposit is usually required.</p></details><details><summary>Is there a holding deposit?</summary><p>Yes, typically one week’s rent, which is deducted from your first month once the lease is signed.</p></details><details><summary>Can I rent furnished?</summary><p>Yes. Several homes, such as the White Pavilion, come fully furnished with flexible lease options.</p></details></div>
+        </div>
+      </section>
+
+      <!-- include:cta-band -->
+    </main>
+
+    <!-- include:footer -->
+    <script type="module" src="/src/js/pages/collection.js"></script>
+  </body>
+</html>

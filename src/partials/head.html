@@ -1,0 +1,31 @@
+<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f7f3ee" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#14110f" media="(prefers-color-scheme: dark)" />
+    <meta property="og:site_name" content="Heaven Estates" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/images/villa1-lg.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/fonts/fraunces-opsz.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/src/styles/base.css" />
+    <link rel="stylesheet" href="/src/styles/components.css" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <script>
+      (function () {
+        var d = document.documentElement;
+        d.classList.add('js');
+        try {
+          var t = localStorage.getItem('hv-theme');
+          if (t) d.setAttribute('data-theme', t);
+          if (sessionStorage.getItem('hv-transition')) {
+            d.classList.add('pt-enter');
+            sessionStorage.removeItem('hv-transition');
+          } else if (!sessionStorage.getItem('hv-visited') && /^\/(index\.html)?$/.test(location.pathname)) {
+            d.classList.add('pl-first');
+          }
+        } catch (e) {}
+      })();
+    </script>

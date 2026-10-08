@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- include:head -->
+    <link rel="stylesheet" href="/src/styles/pages.css" />
+    <title>Page not found — Heaven</title>
+    <meta name="robots" content="noindex" />
+    <meta name="description" content="This page has moved out." />
+  </head>
+  <body data-page="404">
+    <!-- include:header -->
+
+    <main id="main">
+      <section class="nf">
+        <div class="nf__photo" data-reveal="clip"><img class="tone" src="/images/dusk2-lg.webp" srcset="/images/dusk2-sm.webp 860w, /images/dusk2-lg.webp 1600w" sizes="(max-width: 1100px) 100vw, 1100px" alt="A modern home glowing at dusk" fetchpriority="high" /></div>
+        <div>
+          <div class="nf__code" aria-hidden="true">404</div>
+          <h1>This page has moved out</h1>
+          <p>The page you’re looking for may have sold, moved or never existed. Let’s find you somewhere better to be.</p>
+          <div class="nf__btns">
+            <a class="btn btn--dark" href="/">Back home <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+            <a class="btn btn--ghost" href="/properties.html">Browse properties</a>
+            <button class="btn btn--ghost" type="button" data-open-chat>Ask Halo</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- include:footer -->
+    <script type="module" src="/src/js/pages/notfound.js"></script>
+  </body>
+</html>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- include:head -->
+    <link rel="stylesheet" href="/src/styles/pages.css" />
+    <title>Contact Heaven — Book a Consultation</title>
+    <meta name="description" content="Talk to a Heaven advisor about buying, selling or renting in Los Angeles. Visit our Beverly Hills, Pasadena or Malibu offices or send us a message." />
+    <meta property="og:title" content="Contact Heaven" />
+  </head>
+  <body data-page="contact">
+    <!-- include:header -->
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container">
+          <div class="listing-head">
+            <div>
+              <span class="eyebrow">Contact</span>
+              <h1 data-split>Let’s find your place, together</h1>
+            </div>
+            <p class="lead">Tell us a little about what you’re looking for. An advisor will reply within the hour during office hours, or Halo can help right now.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top: 0">
+        <div class="container contact-grid">
+          <form class="contact-form" data-contact novalidate>
+            <div class="form-body" style="display: grid; gap: 18px">
+              <h2>Send us a message</h2>
+              <div class="field">
+                <span class="label">I’m interested in</span>
+                <div class="interest" role="radiogroup" aria-label="Interest">
+                  <label><input type="radio" name="interest" value="buy" checked /><span>Buying</span></label>
+                  <label><input type="radio" name="interest" value="rent" /><span>Renting</span></label>
+                  <label><input type="radio" name="interest" value="sell" /><span>Selling</span></label>
+                  <label><input type="radio" name="interest" value="invest" /><span>Investing</span></label>
+                  <label><input type="radio" name="interest" value="careers" /><span>Careers</span></label>
+                </div>
+              </div>
+              <div class="form-grid">
+                <div class="field"><label for="c-name">Full name</label><input id="c-name" class="input" name="name" autocomplete="name" required /><span class="error"></span></div>
+                <div class="field"><label for="c-email">Email</label><input id="c-email" class="input" name="email" type="email" autocomplete="email" required /><span class="error"></span></div>
+                <div class="field"><label for="c-phone">Phone (optional)</label><input id="c-phone" class="input" name="phone" type="tel" autocomplete="tel" /><span class="error"></span></div>
+                <div class="field">
+                  <label for="c-budget">Budget</label>
+                  <select id="c-budget" class="select" name="budget"><option>Not sure yet</option><option>Under $1M</option><option>$1M – $2M</option><option>$2M – $4M</option><option>$4M+</option><option>Rental: under $8K/mo</option><option>Rental: $8K+/mo</option></select><span class="error"></span>
+                </div>
+                <div class="field full"><label for="c-msg">Message</label><textarea id="c-msg" class="textarea" name="message" placeholder="Areas you love, must-haves, timeline…" required></textarea><span class="error"></span></div>
+              </div>
+              <label class="compare-check" style="color: var(--text-soft)"><input type="checkbox" name="news" /> Send me new listings that match (weekly, unsubscribe anytime)</label>
+              <button class="btn btn--dark" type="submit" style="justify-self: start">Send message <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+            </div>
+            <div class="form-success" role="status">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>
+              <h2 data-success-title>Thank you!</h2>
+              <p class="lead">Your message is with our team. An advisor will be in touch within the hour (Mon–Sat, 9am – 7pm).</p>
+              <button class="btn btn--ghost btn--sm" type="button" data-open-chat>Chat with Halo meanwhile</button>
+            </div>
+          </form>
+
+          <div class="offices">
+            <div class="map" aria-label="Map showing Heaven's three offices in Los Angeles" role="img">
+              <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice">
+                <rect width="400" height="250" fill="var(--cream-2)" />
+                <path d="M0 210 C 60 190, 90 230, 150 215 S 260 240, 400 205 V250 H0Z" fill="#a9c4cc" opacity=".55" />
+                <g fill="none" stroke="var(--sand)" stroke-width="6" stroke-linecap="round"><path d="M-10 120 H410" /><path d="M120 -10 V260" /><path d="M-10 40 C 120 70, 260 20, 410 60" /><path d="M260 -10 C 250 90, 300 160, 280 260" /></g>
+                <g fill="none" stroke="var(--line-strong)" stroke-width="1.2"><path d="M-10 160 H410" /><path d="M200 -10 V260" /><path d="M60 -10 V260" /><path d="M340 -10 V260" /><path d="M-10 80 H410" /></g>
+                <g font-family="Inter Variable, sans-serif" font-size="9" fill="var(--text-soft)" letter-spacing="1"><text x="146" y="100">BEVERLY HILLS</text><text x="290" y="54">PASADENA</text><text x="14" y="198">MALIBU</text></g>
+                <g class="pin"><path d="M130 92c-7 0-12 5-12 12 0 9 12 20 12 20s12-11 12-20c0-7-5-12-12-12z" fill="#d9773a" /><circle cx="130" cy="104" r="4" fill="#fff" /></g>
+                <g class="pin" style="animation-delay: .4s"><path d="M300 30c-6 0-10 4-10 10 0 8 10 17 10 17s10-9 10-17c0-6-4-10-10-10z" fill="#1e1b18" /><circle cx="300" cy="40" r="3.4" fill="#fff" /></g>
+                <g class="pin" style="animation-delay: .8s"><path d="M30 168c-6 0-10 4-10 10 0 8 10 17 10 17s10-9 10-17c0-6-4-10-10-10z" fill="#1e1b18" /><circle cx="30" cy="178" r="3.4" fill="#fff" /></g>
+              </svg>
+            </div>
+            <div class="office" data-reveal><span class="badge badge--accent" style="justify-self: start">Head office</span><h3>Beverly Hills</h3><p>9400 Wilshire Blvd, Beverly Hills, CA 90212</p><a href="tel:+13105550142">+1 (310) 555 0142</a><a href="mailto:hello@heaven.estate">hello@heaven.estate</a></div>
+            <div class="office" data-reveal><h3>Pasadena</h3><p>88 W Colorado Blvd, Pasadena, CA 91105</p><a href="tel:+16265550164">+1 (626) 555 0164</a></div>
+            <div class="office" data-reveal><h3>Malibu</h3><p>23410 Civic Center Way, Malibu, CA 90265</p><a href="tel:+13105550122">+1 (310) 555 0122</a></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--alt">
+        <div class="container split">
+          <div>
+            <span class="eyebrow">Before you write</span>
+            <h2 style="font-size: var(--fs-h2); margin-top: 16px" data-split>Quick answers</h2>
+          </div>
+          <div class="faq">
+            <details><summary>When are you open?</summary><p>Our offices are open Monday to Saturday, 9am – 7pm. Sunday viewings are available by appointment, and Halo answers 24/7.</p></details>
+            <details><summary>Is a consultation really free?</summary><p>Yes. Whether you’re buying, selling or renting, your first consultation and valuation are always free and without obligation.</p></details>
+            <details><summary>Do you cover areas outside Los Angeles?</summary><p>Our core is LA County and Orange County’s coast, but our partner network covers most of California.</p></details>
+            <details><summary>Can I visit without an appointment?</summary><p>Of course. Drop in for a coffee at any of our offices; booking ahead guarantees your advisor is available.</p></details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- include:footer -->
+    <script type="module" src="/src/js/pages/contact.js"></script>
+  </body>
+</html>

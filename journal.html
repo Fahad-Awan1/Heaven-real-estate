@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- include:head -->
+    <link rel="stylesheet" href="/src/styles/pages.css" />
+    <title>The Journal — Heaven</title>
+    <meta name="description" content="Notes on living well: design, buying, selling, renting and neighbourhood guides from the Heaven team." />
+    <meta property="og:title" content="The Journal — Heaven" />
+  </head>
+  <body data-page="journal">
+    <!-- include:header -->
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container">
+          <div class="listing-head">
+            <div>
+              <span class="eyebrow">The Journal</span>
+              <h1 data-split>Notes on living well</h1>
+            </div>
+            <p class="lead">Design ideas, market know-how and neighbourhood guides, written by the people who walk these streets every day.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top: 0">
+        <div class="container">
+          <div data-feature></div>
+          <div class="chip-row" role="group" aria-label="Filter by category" data-cats></div>
+          <div class="grid grid-3" data-articles></div>
+        </div>
+      </section>
+
+      <section class="section section--alt">
+        <div class="container" style="max-width: 820px; text-align: center; display: grid; gap: 18px; justify-items: center">
+          <span class="eyebrow eyebrow--center">Newsletter</span>
+          <h2 style="font-size: var(--fs-h2)" data-split>New homes &amp; stories, once a week</h2>
+          <p class="lead">No spam, just our favourite new listings and one good read every Sunday morning.</p>
+          <form class="newsletter" data-newsletter novalidate style="background: var(--surface); border-color: var(--line); width: 100%">
+            <label class="sr-only" for="nl2">Email</label>
+            <input id="nl2" type="email" placeholder="you@example.com" style="color: var(--text)" autocomplete="email" />
+            <button type="submit" style="background: var(--btn-bg); color: var(--btn-text)">Subscribe</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- include:footer -->
+    <script type="module" src="/src/js/pages/journal.js"></script>
+  </body>
+</html>

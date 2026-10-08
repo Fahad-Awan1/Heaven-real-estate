@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- include:head -->
+    <link rel="stylesheet" href="/src/styles/pages.css" />
+    <title>Buy a Home — Heaven</title>
+    <meta name="description" content="Homes for sale across Los Angeles: canyon villas, coastal estates and family houses. Off-market access, honest advice and a negotiator in your corner." />
+    <meta property="og:title" content="Buy a Home — Heaven" />
+    <link rel="preload" as="image" href="/images/villa4-lg.webp" />
+  </head>
+  <body data-page="buy" data-status="sale" data-header="light">
+    <!-- include:header -->
+
+    <main id="main">
+      <section class="banner">
+        <div class="banner__frame">
+          <img class="tone" src="/images/villa4-lg.webp" srcset="/images/villa4-sm.webp 860w, /images/villa4-lg.webp 1600w" sizes="100vw" alt="" fetchpriority="high" data-parallax="0.12" />
+          <span class="eyebrow">Buy with Heaven</span>
+          <div class="banner__row">
+            <div>
+              <h1 data-split>A calmer way to buy your next home</h1>
+              <p class="lead">Off-market access, honest pricing and a negotiator in your corner from first viewing to keys.</p>
+            </div>
+            <div class="banner__stats"><div class="stat-chip"><div><strong>$2.4B</strong><span>Sold to date</span></div></div><div class="stat-chip"><div><strong>18 days</strong><span>Average to offer</span></div></div><div class="stat-chip"><div><strong>101.6%</strong><span>Of asking, on average</span></div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head section-head--split">
+            <div>
+              <span class="eyebrow">How it works</span>
+              <h2 data-split>Five calm steps to your keys</h2>
+            </div>
+            <p class="lead">Questions along the way? Halo, our assistant, is available around the clock, and your agent is only a call away.</p>
+          </div>
+          <div class="steps"><div class="step" data-reveal><h3>Your brief</h3><p>We listen first: budget, timeline and the life you want the home to hold.</p></div><div class="step" data-reveal><h3>Pre-approval</h3><p>We introduce trusted lenders so you can move quickly when the right home appears.</p></div><div class="step" data-reveal><h3>Curated viewings</h3><p>A shortlist that respects your time, including off-market homes you won’t find online.</p></div><div class="step" data-reveal><h3>Offer &amp; negotiation</h3><p>Data-led pricing advice and a seasoned negotiator working for you.</p></div><div class="step" data-reveal><h3>Escrow &amp; keys</h3><p>Inspections, disclosures and closing handled, typically within 30–45 days.</p></div></div>
+        </div>
+      </section>
+
+      <section class="section section--alt" id="listings">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Available now</span>
+            <h2 data-split>Homes for sale</h2>
+          </div>
+          <!-- include:filters -->
+          <div class="results-bar">
+            <span data-results-count></span>
+            <div class="results-bar__right">
+              <label class="sr-only" for="f-sort">Sort by</label>
+              <select id="f-sort" class="select" style="height: 42px; border-radius: 999px; width: auto" data-filter="sort">
+                <option value="featured">Featured first</option>
+                <option value="match">Best match for me</option>
+                <option value="price-asc">Price: low to high</option>
+                <option value="price-desc">Price: high to low</option>
+                <option value="newest">Newest builds</option>
+              </select>
+              <div class="view-toggle" role="group" aria-label="Layout">
+                <button type="button" data-view="grid" aria-pressed="true" aria-label="Grid view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></button>
+                <button type="button" data-view="list" aria-pressed="false" aria-label="List view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg></button>
+              </div>
+            </div>
+          </div>
+          <div class="results" data-results aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container split">
+          <div>
+            <span class="eyebrow">Good to know</span>
+            <h2 style="font-size: var(--fs-h2); margin-top: 16px" data-split>Frequently asked</h2>
+            <p class="lead" style="margin-top: 18px">Can’t see your question? <button type="button" data-open-chat style="color: var(--accent-text); text-decoration: underline; text-underline-offset: 3px">Ask Halo</button> or <a href="/contact.html" style="color: var(--accent-text); text-decoration: underline; text-underline-offset: 3px">contact an advisor</a>.</p>
+          </div>
+          <div class="faq"><details><summary>Do buyers pay a fee to work with Heaven?</summary><p>In most cases, no. Our fee is paid from the sale proceeds by the seller. We’ll always confirm this in writing before you view.</p></details><details><summary>How much deposit do I need?</summary><p>Most lenders ask for 10–20% of the purchase price. With 20% or more you avoid private mortgage insurance. The mortgage calculator on each listing shows the monthly figure.</p></details><details><summary>Can you help me buy from abroad?</summary><p>Yes. We run live video tours, arrange remote notarisation and work with lenders experienced with international buyers.</p></details><details><summary>What are off-market homes?</summary><p>Homes whose owners prefer a discreet sale. Roughly a third of our sales never appear on public portals.</p></details></div>
+        </div>
+      </section>
+
+      <!-- include:cta-band -->
+    </main>
+
+    <!-- include:footer -->
+    <script type="module" src="/src/js/pages/collection.js"></script>
+  </body>
+</html>

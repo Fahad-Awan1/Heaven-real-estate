@@ -1,0 +1,32 @@
+<form class="filters" data-filters role="search" onsubmit="return false">
+            <label class="filters__search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>
+              <span class="sr-only">Search</span>
+              <input type="search" placeholder="Search by name, area or feature…" data-filter="q" />
+            </label>
+            <button class="btn btn--dark btn--sm filters__more" type="button" data-sheet-open>Filters <span data-filter-count></span></button>
+            <div class="filters__sheet" data-sheet>
+              <div class="filters__sheet-head">
+                <h2 style="font-size: 1.6rem">Filters</h2>
+                <button class="icon-btn" type="button" data-sheet-close aria-label="Close filters"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+              </div>
+              <div class="seg" role="group" aria-label="Buy or rent" data-status-seg>
+                <button type="button" data-status="" aria-pressed="true">All</button>
+                <button type="button" data-status="sale" aria-pressed="false">Buy</button>
+                <button type="button" data-status="rent" aria-pressed="false">Rent</button>
+              </div>
+              <label class="sr-only" for="f-city">Area</label>
+              <select id="f-city" class="select" data-filter="city"><option value="">All areas</option></select>
+              <label class="sr-only" for="f-type">Type</label>
+              <select id="f-type" class="select" data-filter="type"><option value="">All types</option></select>
+              <label class="sr-only" for="f-beds">Bedrooms</label>
+              <select id="f-beds" class="select" data-filter="beds"><option value="">Any beds</option><option value="1">1+ beds</option><option value="2">2+ beds</option><option value="3">3+ beds</option><option value="4">4+ beds</option><option value="5">5+ beds</option></select>
+              <div class="price-filter">
+                <label for="f-max">Max price <output data-max-out>Any</output></label>
+                <input id="f-max" type="range" min="0" max="100" step="1" value="100" data-filter="max" />
+              </div>
+              <button class="btn btn--ghost btn--sm" type="button" data-reset>Reset</button>
+              <button class="btn btn--dark btn--block sheet-apply" type="button" data-sheet-close>Show homes</button>
+            </div>
+          </form>
+          <div class="sheet-backdrop" data-sheet-close></div>

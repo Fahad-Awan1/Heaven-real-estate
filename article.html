@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- include:head -->
+    <link rel="stylesheet" href="/src/styles/pages.css" />
+    <title>Journal — Heaven</title>
+    <meta name="description" content="A story from the Heaven Journal." />
+    <meta property="og:title" content="Heaven Journal" />
+  </head>
+  <body data-page="article">
+    <!-- include:header -->
+    <div class="read-progress" aria-hidden="true"></div>
+
+    <main id="main">
+      <article>
+        <header class="article-hero">
+          <div class="container" style="max-width: 1100px">
+            <a href="/journal.html" class="crumbs" style="display: inline-flex">← Back to the Journal</a>
+            <div class="a-card__meta" data-meta></div>
+            <h1 data-title></h1>
+            <p class="lead" data-excerpt></p>
+            <div class="article-cover" data-cover></div>
+          </div>
+        </header>
+        <div class="container">
+          <div class="prose" data-body></div>
+          <div class="share-row">
+            <span style="color: var(--text-soft)">Share this story</span>
+            <button class="btn btn--ghost btn--sm" type="button" data-copy>Copy link</button>
+            <a class="btn btn--ghost btn--sm" data-share-x target="_blank" rel="noopener">Post on X</a>
+          </div>
+        </div>
+      </article>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Keep reading</span>
+            <h2 data-split>More from the Journal</h2>
+          </div>
+          <div class="grid grid-3" data-related></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- include:footer -->
+    <script type="module" src="/src/js/pages/article.js"></script>
+  </body>
+</html>
