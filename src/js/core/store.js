@@ -56,7 +56,7 @@ export const matchProfile = {
   },
 };
 
-/** 0–100 "Heaven Match" score for a property given the saved quiz profile. */
+/** 0–100 "Sitara Match" score for a property given the saved quiz profile. */
 export function matchScore(p, profile = matchProfile.get()) {
   if (!profile) return null;
   let score = 40;

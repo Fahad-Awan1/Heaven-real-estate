@@ -7,7 +7,7 @@ export const intents = [
     id: 'greet',
     keywords: ['hi', 'hello', 'hey', 'hiya', 'hola', 'yo', 'good morning', 'good afternoon', 'good evening', 'greetings', 'salam', 'assalam'],
     reply: () =>
-      `Hello! 👋 I’m Halo, Heaven’s assistant. I can search homes, explain buying or renting, estimate a mortgage, or book a tour. What are you looking for today?`,
+      `Hello! 👋 I’m Halo, Sitara’s assistant. I can search homes, explain buying or renting, estimate a mortgage, or book a tour. What are you looking for today?`,
     chips: START_CHIPS,
   },
   {
@@ -35,13 +35,13 @@ export const intents = [
     id: 'identity',
     keywords: ['who are you', 'are you human', 'are you a bot', 'robot', 'ai', 'your name', 'real person'],
     reply: () =>
-      `I’m Halo, Heaven’s virtual assistant. I’m not a human, but I know our listings inside out. If you’d like a real person, our advisors are a call away at <a href="tel:+13105550142">+1 (310) 555 0142</a>.`,
+      `I’m Halo, Sitara’s virtual assistant. I’m not a human, but I know our listings inside out. If you’d like a real person, our advisors are a call away at <a href="tel:+13105550142">+1 (310) 555 0142</a>.`,
     chips: ['Talk to an agent', 'Search homes'],
   },
   {
     id: 'buy',
     keywords: ['buy', 'buying', 'purchase', 'how to buy', 'buy a home', 'buy a house', 'own', 'buying process'],
-    reply: () => `Buying with Heaven takes five calm steps:<ul>
+    reply: () => `Buying with Sitara takes five calm steps:<ul>
       <li><strong>1. Brief:</strong> we learn your budget, must-haves and timeline</li>
       <li><strong>2. Pre-approval:</strong> we introduce trusted lenders</li>
       <li><strong>3. Viewings:</strong> curated tours, including off-market homes</li>
@@ -84,7 +84,7 @@ export const intents = [
     keywords: ['contact', 'phone', 'email', 'call', 'number', 'address', 'office', 'where are you', 'located', 'location of office', 'reach you'],
     reply: () => `You can reach us any of these ways:<ul>
       <li>📞 <a href="tel:+13105550142">+1 (310) 555 0142</a></li>
-      <li>✉️ <a href="mailto:hello@heaven.estate">hello@heaven.estate</a></li>
+      <li>✉️ <a href="mailto:hello@sitarabuilders.com">hello@sitarabuilders.com</a></li>
       <li>📍 9400 Wilshire Blvd, Beverly Hills, CA 90212</li></ul>
       Or send a message through our <a href="/contact.html">contact page</a>.`,
     chips: ['Opening hours', 'Book a tour'],
@@ -132,7 +132,7 @@ export const intents = [
       <li><strong>Families:</strong> Pasadena, Encino, Pacific Palisades (top schools)</li>
       <li><strong>City life:</strong> Downtown LA, Silver Lake, Santa Monica</li>
       <li><strong>Privacy &amp; views:</strong> Malibu, Bel Air, Beverly Hills</li></ul>
-      Take the <a href="#" data-open-quiz>Heaven Match quiz</a> and I’ll rank homes for you.`,
+      Take the <a href="#" data-open-quiz>Sitara Match quiz</a> and I’ll rank homes for you.`,
     chips: ['Homes in Pasadena', 'Homes in Malibu', 'Take the quiz'],
   },
   {
@@ -166,14 +166,14 @@ export const intents = [
     id: 'quiz',
     keywords: ['match', 'quiz', 'recommend', 'suggest', 'what suits me', 'help me choose', 'which home', 'not sure'],
     reply: () =>
-      `Let’s find your match! Our 60-second <a href="#" data-open-quiz>Heaven Match quiz</a> asks four questions and scores every home for you.`,
+      `Let’s find your match! Our 60-second <a href="#" data-open-quiz>Sitara Match quiz</a> asks four questions and scores every home for you.`,
     chips: ['Take the quiz'],
   },
   {
     id: 'about',
-    keywords: ['about', 'about heaven', 'company', 'who is heaven', 'history', 'founded', 'story'],
+    keywords: ['about', 'about sitara', 'company', 'who is sitara', 'sitara group', 'builders', 'history', 'founded', 'story', 'founder', 'ceo', 'owner', 'chairman'],
     reply: () =>
-      `Heaven is a boutique agency founded in 2009 by Sofia Laurent in Beverly Hills. We’ve helped over 4,000 families move, with $2.4B in homes sold. Read <a href="/about.html">our story</a>.`,
+      `Sitara is a boutique agency founded in 2009 by Malik Akbar Awan, and today led by our CEO, Malik Awais Awan. Our founder’s promise, to build every home as if his own family would live in it, still guides every project. We’ve helped over 4,000 families move, with $2.4B in homes sold. Read <a href="/about.html">our story</a>.`,
   },
   {
     id: 'featured',

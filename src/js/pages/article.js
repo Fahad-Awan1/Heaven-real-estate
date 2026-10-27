@@ -4,7 +4,7 @@ import { articleCard, formatDate } from '../components/articles.js';
 import { $, img, params, escapeHtml, toast } from '../core/utils.js';
 
 const a = getArticle(params().get('id')) || articles[0];
-document.title = `${a.title} — Heaven Journal`;
+document.title = `${a.title} — Sitara Journal`;
 $('meta[name="description"]').setAttribute('content', a.excerpt);
 $('[data-meta]').innerHTML = `<span class="badge">${a.category}</span>${formatDate(a.date)} · ${a.read} min read`;
 $('[data-title]').textContent = a.title;

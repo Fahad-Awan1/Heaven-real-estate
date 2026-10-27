@@ -1,5 +1,5 @@
 // Listing data. `status`: 'sale' | 'rent' (rent prices are per month).
-// `lifestyle` tags drive the Heaven Match quiz; `vibe` scores (0–100) feed the neighbourhood meters.
+// `lifestyle` tags drive the Sitara Match quiz; `vibe` scores (0–100) feed the neighbourhood meters.
 export const properties = [
   {
     id: 'modern-villa-beverly-hills',

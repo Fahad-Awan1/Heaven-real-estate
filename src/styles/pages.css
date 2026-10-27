@@ -1484,3 +1484,206 @@ body[data-header='light'] .site-header:not(.is-scrolled) .btn--ghost {
   visibility: visible;
   animation: msg-in 0.6s var(--ease-out);
 }
+
+/* =========================================================
+   About: CEO
+   ========================================================= */
+.ceo__grid {
+  display: grid;
+  gap: clamp(32px, 5vw, 80px);
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .ceo__grid {
+    grid-template-columns: 0.95fr 1.05fr;
+  }
+}
+.ceo__photo {
+  position: relative;
+  margin: 0;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  aspect-ratio: 4 / 4.4;
+  box-shadow: var(--shadow-lg);
+  background: var(--sand);
+}
+.ceo__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 20%;
+}
+.ceo__photo::after {
+  content: '';
+  position: absolute;
+  inset: 55% 0 0;
+  background: linear-gradient(180deg, transparent, rgba(20, 14, 10, 0.45));
+  pointer-events: none;
+}
+.ceo__tag {
+  position: absolute;
+  z-index: 1;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: var(--r-md);
+  color: var(--text);
+}
+.ceo__tag strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.1;
+}
+.ceo__tag span span,
+.ceo__tag > span:last-child {
+  font-size: 0.82rem;
+  color: var(--text-soft);
+}
+.ceo__tag-dot {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--sunset);
+  box-shadow: 0 0 0 5px rgba(217, 119, 58, 0.2);
+}
+.ceo__text {
+  display: grid;
+  gap: 22px;
+}
+.ceo__text h2 {
+  font-size: var(--fs-h2);
+}
+.ceo__quote {
+  margin: 0;
+  padding-left: 22px;
+  border-left: 2px solid var(--amber);
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.7rem);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+.ceo__facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-block: 1px solid var(--line);
+}
+.ceo__facts li {
+  display: grid;
+  gap: 2px;
+  padding: 18px 12px 18px 0;
+}
+.ceo__facts li + li {
+  padding-left: 16px;
+  border-left: 1px solid var(--line);
+}
+.ceo__facts strong {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  line-height: 1;
+}
+.ceo__facts span {
+  font-size: 0.82rem;
+  color: var(--text-soft);
+}
+.ceo__tag {
+  background: rgba(255, 250, 244, 0.9);
+}
+.ceo__tag strong {
+  color: var(--ink);
+}
+.ceo__tag > span:last-child {
+  color: #6f655b;
+}
+
+.ceo--next {
+  padding-top: 0;
+}
+@media (min-width: 900px) {
+  .ceo__grid--reverse {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+  .ceo__grid--reverse .ceo__photo {
+    order: 2;
+  }
+}
+.ceo--founder .ceo__photo img {
+  object-position: 50% 15%;
+}
+
+/* About: leadership portraits */
+.leaders {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-items: start;
+}
+.leader {
+  position: relative;
+  margin: 0;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  box-shadow: var(--shadow-lg);
+}
+.leader--offset {
+  margin-top: 36px;
+}
+.leader img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 20%;
+}
+.leader figcaption {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  display: grid;
+  gap: 2px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255, 250, 244, 0.9);
+  color: var(--ink);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.leader figcaption strong {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.05rem;
+  line-height: 1.15;
+}
+.leader figcaption span {
+  font-size: 0.75rem;
+  color: #6f655b;
+}
+@media (max-width: 600px) {
+  .leaders {
+    gap: 10px;
+  }
+  .leader--offset {
+    margin-top: 24px;
+  }
+  .leader figcaption {
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    padding: 7px 9px;
+    border-radius: 10px;
+  }
+  .leader figcaption strong {
+    font-size: 0.86rem;
+  }
+  .leader figcaption span {
+    font-size: 0.66rem;
+  }
+}

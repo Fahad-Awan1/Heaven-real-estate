@@ -270,7 +270,7 @@ export function respond(raw) {
     return { html: `Sure! Tell me what to change, e.g. <em>“4 beds in Pasadena under 2.5M”</em> or <em>“apartments to rent with a pool”</em>.` };
   if (/^take the quiz/.test(text)) {
     import('./quiz.js').then((m) => m.openQuiz());
-    return { html: `Opening the Heaven Match quiz for you ✨` };
+    return { html: `Opening the Sitara Match quiz for you ✨` };
   }
   if (/^show homes in budget/.test(text)) return searchReply({ features: [], status: 'sale', max: 2000000 });
 
@@ -357,7 +357,7 @@ function hydrate() {
   } else {
     const h = new Date().getHours();
     const hello = h < 12 ? 'Good morning' : h < 18 ? 'Good afternoon' : 'Good evening';
-    addMessage('bot', `${hello}! ☀️ I’m <strong>Halo</strong>, your Heaven assistant.`);
+    addMessage('bot', `${hello}! ☀️ I’m <strong>Halo</strong>, your Sitara assistant.`);
     botReply({
       html: `Looking to buy, rent or sell? Ask me anything, or try <em>“3 bed villa in Malibu”</em>.`,
       chips: START_CHIPS,

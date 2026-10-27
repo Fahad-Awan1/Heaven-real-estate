@@ -13,7 +13,7 @@ const agent = getAgent(p.agent);
 recent.push(p.id);
 
 /* ---------- Meta + header ---------- */
-document.title = `${p.title}, ${p.city} — Heaven`;
+document.title = `${p.title}, ${p.city} — Sitara Group of Builders`;
 $('meta[name="description"]').setAttribute('content', `${p.title} in ${p.city}: ${p.beds} beds, ${p.baths} baths, ${p.sqft.toLocaleString()} ft². ${p.description}`);
 $('[data-crumb]').textContent = p.title;
 $('[data-title]').textContent = p.title;
@@ -41,7 +41,7 @@ paintFav();
 cmp.checked = compare.has(p.id);
 $('[data-share]').innerHTML = `${icons.share}<span>Share</span>`;
 $('[data-share]').addEventListener('click', async () => {
-  const data = { title: `${p.title} — Heaven`, url: location.href };
+  const data = { title: `${p.title} — Sitara Group of Builders`, url: location.href };
   try {
     if (navigator.share) await navigator.share(data);
     else {

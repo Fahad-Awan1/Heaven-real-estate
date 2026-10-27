@@ -8,7 +8,7 @@ import { propertyUrl } from './cards.js';
 const STEPS = [
   {
     key: 'status',
-    q: 'What brings you to Heaven?',
+    q: 'What brings you to Sitara?',
     options: [
       ['sale', 'I want to buy', 'Find a home to own'],
       ['rent', 'I want to rent', 'Flexible, move-in ready'],
@@ -66,7 +66,7 @@ function build() {
   modal.setAttribute('aria-hidden', 'true');
   modal.innerHTML = `
     <div class="modal__backdrop" data-close></div>
-    <div class="modal__panel" role="dialog" aria-modal="true" aria-label="Heaven Match quiz" data-lenis-prevent>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-label="Sitara Match quiz" data-lenis-prevent>
       <button class="icon-btn modal__close" type="button" data-close aria-label="Close">${icons.close}</button>
       <div class="quiz__progress"><span></span></div>
       <div class="quiz__body"></div>
@@ -129,7 +129,7 @@ function render() {
       .sort((a, b) => b.s - a.s)
       .slice(0, 3);
     body.innerHTML = `
-      <span class="eyebrow">Your Heaven Match</span>
+      <span class="eyebrow">Your Sitara Match</span>
       <h3 class="quiz__q">${answers.name ? `${escapeHtml(answers.name)}, here` : 'Here'} are your top homes</h3>
       <div class="quiz__results">${ranked
         .map(

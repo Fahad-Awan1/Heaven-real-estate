@@ -155,8 +155,31 @@
   height: 38px;
 }
 .logo .logo-halo {
-  transform-origin: 20px 6px;
-  animation: halo 5s ease-in-out infinite;
+  transform-origin: 20px 4.3px;
+  color: var(--sunset);
+  animation: twinkle 4s ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(0.82) rotate(45deg);
+  }
+}
+.logo__word {
+  display: grid;
+  line-height: 1;
+}
+.logo__word small {
+  font-family: var(--font-body);
+  font-size: 0.56rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  margin-top: 4px;
+  opacity: 0.75;
 }
 @keyframes halo {
   0%,
@@ -1019,14 +1042,14 @@ a:focus-visible > .roll > span {
   height: 92px;
   color: var(--text);
 }
-.preloader__logo path,
-.preloader__logo ellipse {
+.preloader__logo path {
   stroke-dasharray: 140;
   stroke-dashoffset: 140;
   animation: draw 1.6s var(--ease-out) forwards;
 }
-.preloader__logo ellipse {
+.preloader__logo path:nth-of-type(3) {
   animation-delay: 0.9s;
+  color: var(--sunset);
 }
 .preloader__logo path:nth-of-type(2) {
   animation-delay: 0.5s;
@@ -1818,7 +1841,7 @@ input[type='range'] {
   inset: 0;
 }
 
-/* Heaven Match quiz */
+/* Sitara Match quiz */
 .quiz .modal__panel {
   width: min(100%, 720px);
   padding-top: 56px;
@@ -2009,7 +2032,7 @@ input[type='range'] {
 
 
 /* =========================================================
-   Heaven Match CTA
+   Sitara Match CTA
    ========================================================= */
 .match-cta {
   position: relative;
