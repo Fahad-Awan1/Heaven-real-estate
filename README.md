@@ -33,8 +33,7 @@ Upload the contents of `dist/` to any static host. Configure the host to serve `
 ## Signature features
 
 - **Halo chatbot** (`src/js/components/chatbot.js`, knowledge base in `src/data/chatbot.js`): typo-tolerant intent matching, natural-language property search ("3 bed villa in Malibu under 5M"), mortgage maths ("mortgage on $1.5M"), a guided tour-booking flow, quick-reply chips, and history kept for the session.
-- **Sitara Match quiz:** 5 questions about how you live, then every home gets a match % that is used for sorting and badges. It also personalises the hero greeting ("Good evening, Alex. 5 homes match your preferences").
-- **Time-aware greeting:** the hero card greets visitors by time of day (and by name after the quiz).
+- **Sitara Match quiz:** 5 questions about how you live, then every home gets a match % that is used for sorting and badges.
 - **Favourites and compare:** heart any home (saved in the browser), then compare up to 3 side by side.
 - **Dark mode** (follows the system, with a manual toggle), a custom cursor, magnetic buttons, rolling-letter nav, page-transition curtain, and a first-visit preloader.
 

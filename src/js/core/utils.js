@@ -69,21 +69,6 @@ export function toast(message) {
 
 export const params = () => new URLSearchParams(location.search);
 
-export function timeOfDay(date = new Date()) {
-  const h = date.getHours() + date.getMinutes() / 60;
-  if (h >= 5 && h < 11) return 'morning';
-  if (h >= 11 && h < 16.5) return 'day';
-  if (h >= 16.5 && h < 20) return 'sunset';
-  return 'night';
-}
-export function greeting(date = new Date()) {
-  const h = date.getHours();
-  if (h < 5) return 'Good evening';
-  if (h < 12) return 'Good morning';
-  if (h < 18) return 'Good afternoon';
-  return 'Good evening';
-}
-
 export function onIdle(fn, timeout = 1500) {
   if ('requestIdleCallback' in window) requestIdleCallback(fn, { timeout });
   else setTimeout(fn, 200);

@@ -1,44 +1,21 @@
 import { ready } from '../main.js';
 import { gsap, ScrollTrigger, splitReveal } from '../core/motion.js';
 import { SplitText } from 'gsap/SplitText';
-import { $, $$, img, money, greeting, timeOfDay, reducedMotion } from '../core/utils.js';
+import { $, $$, img, reducedMotion } from '../core/utils.js';
 import { icons } from '../core/icons.js';
 import { properties, cities, types } from '../../data/properties.js';
 import { articles } from '../../data/articles.js';
 import { propertyCard } from '../components/cards.js';
-import { matchProfile, matchScore, subscribe } from '../core/store.js';
 import { initCarousel } from '../components/carousel.js';
 import { articleCard } from '../components/articles.js';
 
 /* ---------------- Hero ---------------- */
-
-function paintGreeting() {
-  const profile = matchProfile.get();
-  const tod = timeOfDay();
-  $('[data-greet-icon]').innerHTML = tod === 'night' ? icons.moon : tod === 'morning' ? icons.sunrise : icons.sun;
-  $('[data-greet-title]').textContent = `${greeting()}${profile?.name ? `, ${profile.name}` : ''}.`;
-  const action = $('[data-greet-action]');
-  if (profile) {
-    const n = properties.filter((p) => matchScore(p, profile) >= 70).length;
-    $('[data-greet-text]').textContent = `${n} ${n === 1 ? 'home matches' : 'homes match'} your preferences.`;
-    $('[data-greet-specs]').innerHTML = `${profile.beds || 1}+ beds <i></i> ${profile.status === 'rent' ? 'Rent' : 'Buy'} <i></i> <b>${money(profile.budget, { compact: true })}</b>`;
-    action.onclick = () => (location.href = '/properties.html?sort=match');
-    action.removeAttribute('data-open-quiz');
-  } else {
-    $('[data-greet-text]').textContent = 'Tell us how you live and we’ll match you with homes you’ll love.';
-    $('[data-greet-specs]').innerHTML = '<b>Take the 60-second quiz</b>';
-    action.setAttribute('data-open-quiz', '');
-  }
-}
-paintGreeting();
-subscribe(paintGreeting);
 
 ready.then(() => {
   const title = $('[data-hero-title]');
   splitReveal(title, { scroll: false, delay: 0.15 });
   const d = reducedMotion() ? 0 : 1;
   gsap.fromTo('.hero-in', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 1 * d, stagger: 0.1, delay: 0.45 * d, ease: 'power3.out' });
-  gsap.fromTo('.hero-in-r', { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 1.1 * d, stagger: 0.15, delay: 0.9 * d, ease: 'power3.out' });
   gsap.fromTo('.hero__scroll, .hero__foot', { opacity: 0 }, { opacity: 1, duration: 1 * d, delay: 1.2 * d });
 
   if (!reducedMotion()) {
