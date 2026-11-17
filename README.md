@@ -50,7 +50,7 @@ All content lives in plain data files, so no code changes are needed:
 
 ### Images
 
-Photos are royalty-free from Unsplash, stored locally as WebP in two sizes (`-sm` 860px, `-lg` 1600px). To add one, put its Unsplash photo id in `scripts/fetch-images.mjs` and run `npm run images`, or drop your own `name-sm.webp` / `name-lg.webp` into `public/images/`.
+Photos are royalty-free from Unsplash and Pexels (property photos are of homes in Pakistan), stored locally as WebP in two sizes (`-sm` 860px, `-lg` 1600px). To add one, put its Unsplash photo id (or `{ pexels: 'id' }` for a Pexels photo) in `scripts/fetch-images.mjs` and run `npm run images`, or drop your own `name-sm.webp` / `name-lg.webp` into `public/images/`.
 
 ## Performance notes
 
