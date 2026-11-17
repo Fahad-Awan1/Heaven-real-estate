@@ -64,7 +64,7 @@ export const intents = [
     id: 'sell',
     keywords: ['sell', 'selling', 'list my home', 'list my house', 'valuation', 'value my home', 'worth', 'appraisal', 'how much is my house'],
     reply: () =>
-      `Thinking of selling? Our <a href="/sell.html">instant valuation tool</a> gives you an estimate in under a minute. A local expert then confirms it in person, free. Our listings sell in an average of <strong>18 days</strong> at <strong>101.6%</strong> of asking.`,
+      `Thinking of selling? Our <a href="/sell.html">instant valuation tool</a> gives you an estimate in under a minute. A local expert then confirms it in person, free. Our listings sell in an average of <strong>41 days</strong> at <strong>97%</strong> of asking.`,
     chips: ['Get a valuation', 'What are your fees?', 'Talk to an agent'],
   },
   {
@@ -173,7 +173,7 @@ export const intents = [
     id: 'about',
     keywords: ['about', 'about sitara', 'company', 'who is sitara', 'sitara group', 'builders', 'history', 'founded', 'story', 'founder', 'ceo', 'owner', 'chairman'],
     reply: () =>
-      `Sitara is a boutique agency founded in 2009 by Malik Akbar Awan, and today led by our CEO, Malik Awais Awan. Our founder’s promise, to build every home as if his own family would live in it, still guides every project. We’ve helped over 4,000 families move, with $2.4B in homes sold. Read <a href="/about.html">our story</a>.`,
+      `Sitara is a boutique agency founded in 2009 by Malik Akbar Awan, and today led by our CEO, Malik Awais Awan. Our founder’s promise, to build every home as if his own family would live in it, still guides every project. We’ve helped over 650 families move into homes across 14 completed projects. Read <a href="/about.html">our story</a>.`,
   },
   {
     id: 'featured',

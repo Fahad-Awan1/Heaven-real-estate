@@ -1503,15 +1503,16 @@ body[data-header='light'] .site-header:not(.is-scrolled) .btn--ghost {
   margin: 0;
   border-radius: var(--r-xl);
   overflow: hidden;
-  aspect-ratio: 4 / 4.4;
+  /* the frame follows the photo's own shape, so portraits are never cropped */
+  width: 100%;
+  max-width: 460px;
+  justify-self: center;
   box-shadow: var(--shadow-lg);
   background: var(--sand);
 }
 .ceo__photo img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 20%;
+  height: auto;
 }
 .ceo__photo::after {
   content: '';
@@ -1614,9 +1615,6 @@ body[data-header='light'] .site-header:not(.is-scrolled) .btn--ghost {
     order: 2;
   }
 }
-.ceo--founder .ceo__photo img {
-  object-position: 50% 15%;
-}
 
 /* About: leadership portraits */
 .leaders {
@@ -1630,7 +1628,6 @@ body[data-header='light'] .site-header:not(.is-scrolled) .btn--ghost {
   margin: 0;
   border-radius: var(--r-lg);
   overflow: hidden;
-  aspect-ratio: 3 / 4;
   box-shadow: var(--shadow-lg);
 }
 .leader--offset {
@@ -1638,9 +1635,7 @@ body[data-header='light'] .site-header:not(.is-scrolled) .btn--ghost {
 }
 .leader img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 20%;
+  height: auto;
 }
 .leader figcaption {
   position: absolute;
