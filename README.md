@@ -1,6 +1,8 @@
-# Sitara — Luxury Real Estate Website
+# Sitara Group of Builders — Pakistani Builder & Real Estate Website
 
-A fast, fully responsive multi-page real-estate site with real photography, cinematic scroll animations, an interactive 3D floor plan and a built-in assistant ("Halo").
+The website of Sitara Group of Builders, a Lahore-based builder and property advisor (founded 2009) with offices in Lahore, Islamabad and Karachi. Visitors can browse homes for sale and rent across Lahore, Islamabad, Karachi and the northern hill areas, with prices in PKR (lakh/crore) and plot sizes in marla, kanal and square yards.
+
+A fast, fully responsive multi-page site with real photography, cinematic scroll animations, an interactive 3D floor plan and a built-in assistant ("Halo").
 
 Built with **Vite + vanilla JS**, **three.js**, **GSAP** (ScrollTrigger, SplitText) and **Lenis**. There is no framework and no backend: everything is static and can be hosted anywhere (Netlify, Vercel, cPanel, S3…).
 
@@ -21,7 +23,7 @@ Upload the contents of `dist/` to any static host. Configure the host to serve `
 |---|---|---|
 | Home | `index.html` | Golden-hour photo hero with slow zoom and parallax, quick search, scroll-lit statement, featured carousel, **pinned "Build your Sitara" photo story**, neighbourhood cards, Sitara Match CTA, counters, testimonials, journal, CTA |
 | Properties | `properties.html` | Live filters (search, buy/rent, area, type, beds, price), sort (incl. "best match"), grid/list view, saved homes, compare, URL sync, mobile filter sheet |
-| Property detail | `property.html?id=…` | Gallery + lightbox (swipe/keys), day/dusk preview, **interactive 3D floor plan**, neighbourhood scores, mortgage calculator with donut chart, tour booking, similar and recently viewed homes |
+| Property detail | `property.html?id=…` | Gallery + lightbox (swipe/keys), day/dusk preview, **interactive 3D floor plan**, neighbourhood scores, home finance calculator (PKR, KIBOR-linked indicative rate) with donut chart, tour booking, similar and recently viewed homes |
 | Buy / Rent | `buy.html`, `rent.html` | Process steps, pre-filtered listings, FAQs |
 | Sell | `sell.html` | **Instant valuation tool**, marketing plan, seller story |
 | About | `about.html` | Story, counters, values, pinned horizontal milestones timeline |
@@ -32,7 +34,7 @@ Upload the contents of `dist/` to any static host. Configure the host to serve `
 
 ## Signature features
 
-- **Halo chatbot** (`src/js/components/chatbot.js`, knowledge base in `src/data/chatbot.js`): typo-tolerant intent matching, natural-language property search ("3 bed villa in Malibu under 5M"), mortgage maths ("mortgage on $1.5M"), a guided tour-booking flow, quick-reply chips, and history kept for the session.
+- **Halo chatbot** (`src/js/components/chatbot.js`, knowledge base in `src/data/chatbot.js`): typo-tolerant intent matching, natural-language property search (e.g. "3 bed house in Lahore"), home finance maths, a guided tour-booking flow, quick-reply chips, and history kept for the session.
 - **Sitara Match quiz:** 5 questions about how you live, then every home gets a match % that is used for sorting and badges.
 - **Favourites and compare:** heart any home (saved in the browser), then compare up to 3 side by side.
 - **Dark mode** (follows the system, with a manual toggle), a custom cursor, magnetic buttons, rolling-letter nav, page-transition curtain, and a first-visit preloader.

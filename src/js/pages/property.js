@@ -14,12 +14,12 @@ recent.push(p.id);
 
 /* ---------- Meta + header ---------- */
 document.title = `${p.title}, ${p.city} — Sitara Group of Builders`;
-$('meta[name="description"]').setAttribute('content', `${p.title} in ${p.city}: ${p.beds} beds, ${p.baths} baths, ${p.sqft.toLocaleString()} ft². ${p.description}`);
+$('meta[name="description"]').setAttribute('content', `${p.title} in ${p.area}, ${p.city}: ${p.size}, ${p.beds} beds, ${p.baths} baths, ${p.sqft.toLocaleString()} sq ft covered. ${p.description}`);
 $('[data-crumb]').textContent = p.title;
 $('[data-title]').textContent = p.title;
 $('[data-address]').innerHTML = `${icons.pin}${escapeHtml(p.address)}`;
 $('[data-price]').textContent = money(p.price);
-$('[data-price-sub]').textContent = p.status === 'rent' ? 'per month' : `${money(p.price / p.sqft)} per ft²`;
+$('[data-price-sub]').textContent = p.status === 'rent' ? 'per month' : `${money(p.price / p.sqft, { exact: true })} per sq ft covered`;
 const match = matchScore(p);
 $('[data-badges]').innerHTML = `<span class="badge ${p.status === 'rent' ? 'badge--accent' : ''}" style="border:1px solid var(--line)">${p.status === 'rent' ? 'For rent' : 'For sale'}</span><span class="badge" style="border:1px solid var(--line)">${p.type}</span>${match ? `<span class="badge badge--match">${match}% match</span>` : ''}`;
 
@@ -123,7 +123,7 @@ $('[data-property]').classList.add('is-ready');
 $('[data-keyfacts]').innerHTML = [
   [icons.bed, p.beds, 'Bedrooms'],
   [icons.bath, p.baths, 'Bathrooms'],
-  [icons.area, p.sqft.toLocaleString(), 'Square feet'],
+  [icons.area, p.size, `${p.sqft.toLocaleString()} sq ft covered`],
   [icons.home, p.type, 'Property type'],
   [icons.calendar, p.year, 'Year built'],
 ]
@@ -137,7 +137,7 @@ const fpWrap = $('[data-floorplan]');
 const label = $('[data-room-label]');
 const legend = $('[data-room-legend]');
 const showRoom = (r) => {
-  label.innerHTML = r ? `<strong>${r.name}</strong><span>≈ ${r.sqft.toLocaleString()} ft²</span>` : '<strong>Tap a room</strong><span>to see its size</span>';
+  label.innerHTML = r ? `<strong>${r.name}</strong><span>≈ ${r.sqft.toLocaleString()} sq ft</span>` : '<strong>Tap a room</strong><span>to see its size</span>';
   $$('.chip', legend).forEach((c) => c.setAttribute('aria-pressed', c.dataset.room === r?.name));
 };
 if (webglAvailable()) {
@@ -180,11 +180,11 @@ onVisible(vibes, (v) => v && vibes.classList.add('in-view'), '-80px');
 const mBlock = $('[data-mortgage-block]');
 if (p.status === 'rent') {
   mBlock.querySelector('h2').textContent = 'Affordability';
-  mBlock.querySelector('.mortgage').innerHTML = `<div class="mortgage__inputs"><p class="pd-desc">Most landlords look for a household income of around <strong>${money(p.price * 36)}</strong> a year (3× the monthly rent). Move-in costs are typically first month plus a deposit: about <strong>${money(p.price * 2)}</strong>.</p><button class="btn btn--dark" type="button" data-open-chat="What documents do I need?" style="justify-self:start">What documents do I need?</button></div>`;
+  mBlock.querySelector('.mortgage').innerHTML = `<div class="mortgage__inputs"><p class="pd-desc">Plan for a household income of around <strong>${money(p.price * 3)}</strong> a month (3× the rent). To move in you’ll usually pay two months’ security deposit, one month’s rent in advance and one month’s commission: about <strong>${money(p.price * 4)}</strong>.</p><button class="btn btn--dark" type="button" data-open-chat="What documents do I need?" style="justify-self:start">What documents do I need?</button></div>`;
 } else {
   const inputs = Object.fromEntries($$('[data-m]').map((el) => [el.dataset.m, el]));
   const outs = Object.fromEntries($$('[data-m-out]').map((el) => [el.dataset.mOut, el]));
-  let years = 30;
+  let years = 20;
   inputs.price.value = p.price;
   const calc = () => {
     const price = Number(inputs.price.value);
@@ -193,16 +193,17 @@ if (p.status === 'rent') {
     const n = years * 12;
     const loan = price * (1 - downPct / 100);
     const pi = rate ? (loan * rate) / (1 - Math.pow(1 + rate, -n)) : loan / n;
-    const tax = (price * 0.0115) / 12;
-    const ins = (price * 0.0035) / 12;
+    // indicative: annual property tax and takaful/insurance as a share of the price
+    const tax = (price * 0.001) / 12;
+    const ins = (price * 0.002) / 12;
     const total = pi + tax + ins;
-    outs.price.textContent = money(price);
+    outs.price.textContent = money(price, { compact: true });
     outs.down.textContent = `${downPct}% · ${money((price * downPct) / 100, { compact: true })}`;
     outs.rate.textContent = `${Number(inputs.rate.value).toFixed(2)}%`;
     $('[data-m-total]').textContent = money(total);
-    $('[data-m-pi]').textContent = money(pi);
-    $('[data-m-tax]').textContent = money(tax);
-    $('[data-m-ins]').textContent = money(ins);
+    $('[data-m-pi]').textContent = money(pi, { exact: true });
+    $('[data-m-tax]').textContent = money(tax, { exact: true });
+    $('[data-m-ins]').textContent = money(ins, { exact: true });
     let offset = 0;
     [['pi', pi], ['tax', tax], ['ins', ins]].forEach(([k, v]) => {
       const len = (v / total) * 100;

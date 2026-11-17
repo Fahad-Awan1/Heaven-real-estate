@@ -1,6 +1,6 @@
 // Downloads royalty-free photos as optimised WebP into public/images.
 // Plain strings are Unsplash photo ids; { pexels: 'id' } entries come from Pexels.
-// Property photos are of homes in Pakistan.
+// Property, interior, city and team photos are from Pakistan.
 // Each image is saved at two widths (-sm / -lg) for responsive srcset.
 import { mkdir, writeFile, access } from 'node:fs/promises';
 
@@ -25,24 +25,24 @@ const IMAGES = {
   house2: '1602388753263-2540776be9f1',
   apt1: { pexels: '14297175' },
   apt2: { pexels: '18559073' },
-  int1: '1600607687939-ce8a6c25118c',
-  int2: '1600566753190-17f0baa2a6c3',
-  int3: '1600210492486-724fe5c67fb0',
-  int4: '1493809842364-78817add7ffb',
-  int5: '1560448204-e02f11c3d0e2',
+  int1: { pexels: '18246434' },
+  int2: { pexels: '27822512' },
+  int3: { pexels: '27923187' },
+  int4: { pexels: '27822509' },
+  int5: { pexels: '18246428' },
   int6: '1507089947368-19c1da9775ae',
-  city: '1477959858617-67f85cf4f1df',
-  mountains: '1506905925346-21bda4d32df4',
+  city: { pexels: '12912453' },
+  mountains: { pexels: '33302320' },
   dusk1: '1686164748261-33e13eef70b6',
   night1: '1686164748506-4311ba437c24',
   glass1: '1572099158036-8304be15d73f',
   int7: '1613545325278-f24b0cae1224',
-  agent1: '1507003211169-0a1dd7228f2d',
-  agent2: '1494790108377-be9c29b29330',
-  agent3: '1500648767791-00dcc994a43e',
-  agent4: '1438761681033-6461ffad8d80',
-  agent5: '1472099645785-5658abf4ff4e',
-  agent6: '1544005313-94ddf0286df2',
+  agent1: { pexels: '15200105' },
+  agent2: { pexels: '33848342' },
+  agent3: { pexels: '28243069' },
+  agent4: { pexels: '36965908' },
+  agent5: { pexels: '35152184' },
+  agent6: { pexels: '35576577' },
 };
 const SIZES = { sm: 860, lg: 1600 };
 
@@ -57,7 +57,7 @@ for (const [name, entry] of Object.entries(IMAGES)) {
     const width = portrait ? Math.round(w / 2) : w;
     const crop = portrait ? `&h=${Math.round(width * 1.2)}&fit=crop&crop=faces` : '';
     const url = pexels
-      ? `https://images.pexels.com/photos/${pexels}/pexels-photo-${pexels}.jpeg?auto=compress&cs=tinysrgb&w=${width}&q=72&fm=webp`
+      ? `https://images.pexels.com/photos/${pexels}/pexels-photo-${pexels}.jpeg?auto=compress&cs=tinysrgb&w=${width}${portrait ? `&h=${Math.round(width * 1.2)}&fit=crop` : ''}&q=72&fm=webp`
       : `https://images.unsplash.com/photo-${id}?w=${width}${crop}&q=72&fm=webp&auto=format`;
     const res = await fetch(url);
     if (!res.ok) { failed.push(`${name} (${res.status})`); break; }

@@ -1,4 +1,4 @@
-import { intents, START_CHIPS, CITY_ALIASES, TYPE_ALIASES, FEATURE_WORDS } from '../../data/chatbot.js';
+import { intents, START_CHIPS, CITY_ALIASES, AREA_ALIASES, TYPE_ALIASES, FEATURE_WORDS } from '../../data/chatbot.js';
 import { properties, getProperty } from '../../data/properties.js';
 import { getAgent } from '../../data/agents.js';
 import { $, escapeHtml, money, session, params, isMobile } from '../core/utils.js';
@@ -46,63 +46,110 @@ function scoreIntents(raw) {
   return best;
 }
 
-function parseAmount(num, unit, rentContext) {
+/* ---------- PKR amounts: "2 crore", "2.5cr", "80 lac", "50k", "rs 90 lakh", "1,50,000" ---------- */
+// groups: 1 currency prefix, 2 number, 3 unit
+const AMOUNT = '(pkr|rs\\.?|rupees)?\\s*(\\d[\\d,]*(?:\\.\\d+)?)\\s*(crores?|karor|karod|cr|lakhs?|lacs?|lac|thousand|k|millions?|mil|mn|m)?(?![\\w-])';
+const MAX_RE = new RegExp(`(?:under|below|less than|not more than|max|maximum|up ?to|within|budget(?: of| is)?|till|<)\\s*${AMOUNT}|${AMOUNT}\\s*(?:tak|tk|max|maximum|or less|budget)(?![\\w-])`);
+const MIN_RE = new RegExp(`(?:over|above|more than|from|min|minimum|at least|starting(?: from| at)?|>)\\s*${AMOUNT}`);
+// a bare number followed by one of these is a size/count, not money
+const NOT_MONEY = /^\s*(marla|kanal|bed|beds|bedroom|bedrooms|br|bd|room|rooms|sq|yd|years?|yrs?|%|percent)\b/;
+
+function toRupees(num, unit, rentContext) {
   let n = parseFloat(num.replace(/,/g, ''));
-  if (isNaN(n)) return null;
-  if (/^k|thousand/.test(unit || '')) n *= 1e3;
-  else if (/^m|million|mil/.test(unit || '')) n *= 1e6;
-  else if (n < 100) n *= rentContext ? 1e3 : 1e6;
+  if (isNaN(n) || n <= 0) return null;
+  const u = unit || '';
+  if (/^(cr|karo)/.test(u)) n *= 1e7;
+  else if (/^la/.test(u)) n *= 1e5;
+  else if (/^(k|thousand)/.test(u)) n *= 1e3;
+  else if (/^m/.test(u)) n *= 1e6;
+  else if (n < 100) n *= rentContext ? 1e5 : 1e7; // "under 5": 5 lakh a month, or 5 crore
+  else if (n < 10000) n *= 1e3; // "under 150": 150K
   return n;
 }
 
+/** Best money amount in free text: one with a unit/currency first, then a big plain number, then (optionally) a small one. */
+function findAmount(text, rentContext, allowSmall) {
+  let big = null;
+  let small = null;
+  for (const m of text.matchAll(new RegExp(AMOUNT, 'g'))) {
+    if (m[1] || m[3]) return toRupees(m[2], m[3], rentContext);
+    const raw = parseFloat(m[2].replace(/,/g, ''));
+    if (raw >= 10000) big ??= raw;
+    else if (allowSmall && raw > 0 && !NOT_MONEY.test(text.slice(m.index + m[0].length))) small ??= m[2];
+  }
+  if (big) return big;
+  return small ? toRupees(small, '', rentContext) : null;
+}
+
+const aliasRe = (alias) => new RegExp(`(?<![\\w-])${alias}(?![\\w-])`);
+const AREA_KEYS = Object.keys(AREA_ALIASES).sort((a, b) => b.length - a.length);
+
 export function parseFilters(text) {
   const f = { features: [] };
-  if (/\b(rent|rental|rentals|renting|lease|monthly|per month|\/mo)\b/.test(text)) f.status = 'rent';
-  else if (/\b(buy|buying|purchase|for sale|sale|own)\b/.test(text)) f.status = 'sale';
+  // "f7", "f 7", "F-7" -> "f-7"
+  const t = text.replace(/\bf\s?-?\s?(6|7|8|10|11)\b/g, 'f-$1');
+  if (/\b(rent|rental|rentals|renting|lease|monthly|per month|\/mo|kiraya|kiraye|tenant)\b/.test(t)) f.status = 'rent';
+  else if (/\b(buy|buying|purchase|for sale|sale|own|khareed|khareedna)\b/.test(t)) f.status = 'sale';
 
   for (const [alias, city] of Object.entries(CITY_ALIASES)) {
-    if (new RegExp(`\\b${alias}\\b`).test(text)) {
+    if (aliasRe(alias).test(t)) {
       f.city = city;
       break;
     }
   }
+  for (const alias of AREA_KEYS) {
+    if (aliasRe(alias).test(t)) {
+      const a = AREA_ALIASES[alias];
+      f.area = a.area;
+      if (!f.city && a.city) f.city = a.city;
+      break;
+    }
+  }
   for (const [alias, type] of Object.entries(TYPE_ALIASES)) {
-    if (type && new RegExp(`\\b${alias}\\b`).test(text)) {
+    if (type && aliasRe(alias).test(t)) {
       f.type = type;
       break;
     }
   }
-  const beds = text.match(/(\d+|one|two|three|four|five|six)\s*\+?\s*-?\s*(?:bed|beds|bedroom|bedrooms|br|bd|bdr)\b/);
+  if (/\bplots?\b/.test(t)) f.plot = true;
+  const beds = t.match(/(\d+|one|two|three|four|five|six)\s*\+?\s*-?\s*(?:bed|beds|bedroom|bedrooms|br|bd|bdr)\b/);
   if (beds) f.beds = NUMBER_WORDS[beds[1]] || parseInt(beds[1], 10);
 
   const rentCtx = f.status === 'rent';
-  const max = text.match(/(?:under|below|less than|max|maximum|up to|within|budget(?: of| is)?|<)\s*\$?\s*([\d.,]+)\s*(k|m|million|mil|thousand)?\b/);
-  const min = text.match(/(?:over|above|more than|from|min|minimum|at least|>)\s*\$?\s*([\d.,]+)\s*(k|m|million|mil|thousand)?\b/);
-  if (max) f.max = parseAmount(max[1], max[2], rentCtx);
-  if (min) f.min = parseAmount(min[1], min[2], rentCtx);
-  if (!max && !min) {
-    const bare = text.match(/\$\s*([\d.,]+)\s*(k|m|million|mil|thousand)?\b|\b([\d.,]+)\s*(k|m|million|mil)\b/);
-    if (bare) f.max = parseAmount(bare[1] || bare[3], bare[2] || bare[4], rentCtx) * 1.1;
+  const max = t.match(MAX_RE);
+  const min = t.match(MIN_RE);
+  if (max) f.max = max[2] ? toRupees(max[2], max[3], rentCtx) : toRupees(max[5], max[6], rentCtx);
+  if (min) f.min = toRupees(min[2], min[3], rentCtx);
+  if (!f.max && !f.min) {
+    const bare = findAmount(t, rentCtx, false);
+    if (bare) {
+      f.max = bare * 1.1;
+      f.around = bare;
+    }
   }
-  // A budget implies buy vs rent when the user didn't say (rents are monthly)
-  if (!f.status && (f.max || f.min)) f.status = (f.max || f.min) >= 100000 ? 'sale' : 'rent';
+  // A budget implies buy vs rent when the user didn't say. Rents are monthly
+  // (roughly 50K to 8 Lakh); sale prices start around 1.5 Crore.
+  if (!f.status && (f.max || f.min)) f.status = (f.around || f.max || f.min) >= 1e6 ? 'sale' : 'rent';
   for (const [w, tag] of Object.entries(FEATURE_WORDS)) {
-    if (new RegExp(`\\b${w}\\b`).test(text) && !f.features.includes(tag)) f.features.push(tag);
+    if (aliasRe(w).test(t) && !f.features.includes(tag)) f.features.push(tag);
   }
   return f;
 }
+
+const inArea = (p, area) => `${p.area} ${p.address}`.toLowerCase().includes(area.toLowerCase());
 
 function runSearch(f, { sort, featured } = {}) {
   let list = properties.filter(
     (p) =>
       (!f.status || p.status === f.status) &&
       (!f.city || p.city === f.city) &&
+      (!f.area || inArea(p, f.area)) &&
       (!f.type || p.type === f.type) &&
       (!f.beds || p.beds >= f.beds) &&
       (!f.max || p.price <= f.max) &&
       (!f.min || p.price >= f.min) &&
       (!featured || p.featured) &&
-      f.features.every((tag) => p.tags.some((t) => t.toLowerCase().includes(tag.toLowerCase())) || (tag === 'Pet friendly' && p.features.join(' ').toLowerCase().includes('pet'))),
+      f.features.every((tag) => [...p.tags, ...p.features].join(' ').toLowerCase().includes(tag.toLowerCase())),
   );
   if (sort === 'price-asc') list = [...list].sort((a, b) => a.price - b.price);
   if (sort === 'price-desc') list = [...list].sort((a, b) => b.price - a.price);
@@ -113,7 +160,7 @@ const cardsHtml = (list) =>
   `<div class="msg-cards">${list
     .slice(0, 3)
     .map(
-      (p) => `<a class="msg-card" href="/property.html?id=${p.id}"><img src="/images/${p.img}-sm.webp" alt="" loading="lazy"><div><strong>${escapeHtml(p.title)}</strong><span>${p.city} · ${money(p.price)}${p.status === 'rent' ? '/mo' : ''} · ${p.beds} bd</span></div></a>`,
+      (p) => `<a class="msg-card" href="/property.html?id=${p.id}"><img src="/images/${p.img}-sm.webp" alt="" loading="lazy"><div><strong>${escapeHtml(p.title)}</strong><span>${escapeHtml(`${p.area}, ${p.city}`)} · ${money(p.price)}${p.status === 'rent' ? ' /mo' : ''} · ${p.beds} bd</span></div></a>`,
     )
     .join('')}</div>`;
 
@@ -124,15 +171,21 @@ function searchQuery(f) {
   if (f.type) q.set('type', f.type);
   if (f.beds) q.set('beds', f.beds);
   if (f.max) q.set('max', Math.round(f.max));
+  // the listings page filters by city only; sub-areas go in its text search
+  if (f.area) q.set('q', f.area);
   return `/properties.html?${q}`;
 }
 
-function describe(f) {
-  const bits = [f.type ? f.type.toLowerCase() + 's' : 'homes'];
+function describe(f, count = 2) {
+  const perMonth = f.status === 'rent' ? ' /mo' : '';
+  const noun = f.type ? f.type.toLowerCase() : 'home';
+  const bits = [count === 1 ? noun : noun + 's'];
   if (f.status) bits.push(f.status === 'rent' ? 'for rent' : 'for sale');
   if (f.beds) bits.push(`with ${f.beds}+ beds`);
-  if (f.city) bits.push(`in ${f.city}`);
-  if (f.max) bits.push(`under ${money(f.max, { compact: true })}`);
+  if (f.area || f.city) bits.push(`in ${[f.area, f.city].filter(Boolean).join(', ')}`);
+  if (f.around) bits.push(`around ${money(f.around, { compact: true })}${perMonth}`);
+  else if (f.max) bits.push(`under ${money(f.max, { compact: true })}${perMonth}`);
+  if (f.min) bits.push(`from ${money(f.min, { compact: true })}${perMonth}`);
   if (f.features.length) bits.push(`with ${f.features.join(', ').toLowerCase()}`);
   return bits.join(' ');
 }
@@ -140,40 +193,46 @@ function describe(f) {
 function searchReply(f, opts = {}) {
   // price-sorted answers only make sense within one status (rent is monthly)
   if (opts.sort && !f.status) f = { ...f, status: 'sale' };
+  const plotNote = f.plot ? `We mostly list ready homes rather than open plots (an advisor can help with plots and files). ` : '';
   const list = runSearch(f, opts);
   if (list.length) {
     const head = opts.featured
       ? `Here are a few of our featured homes ✨`
       : opts.sort
         ? `Here are our ${opts.sort === 'price-asc' ? 'most affordable' : 'most exclusive'} homes${f.status ? (f.status === 'rent' ? ' to rent' : ' for sale') : ''}:`
-        : `I found <strong>${list.length}</strong> ${describe(f)} 🏡`;
+        : `${plotNote}I found <strong>${list.length}</strong> ${describe(f, list.length)} 🏡`;
     return {
       html: `${head}${cardsHtml(list)}${list.length > 3 || !opts.featured ? `<p style="margin-top:8px"><a href="${searchQuery(f)}">See ${list.length > 3 ? `all ${list.length}` : 'them'} on the listings page →</a></p>` : ''}`,
-      chips: ['Book a tour', 'Mortgage help', 'Refine search'],
+      chips: ['Book a tour', 'Home finance', 'Refine search'],
     };
   }
-  const relaxed = runSearch({ ...f, max: f.max ? f.max * 1.6 : undefined, beds: f.beds ? f.beds - 1 : undefined, features: [] });
-  const fallback = relaxed.length ? relaxed : runSearch({ features: [], status: f.status });
+  const loose = { features: [], status: f.status };
+  let fallback = [
+    runSearch({ ...f, max: f.max ? f.max * 1.6 : undefined, beds: f.beds ? f.beds - 1 : undefined, features: [] }),
+    runSearch({ ...loose, city: f.city, area: f.area, type: f.type }),
+    runSearch({ ...loose, city: f.city }),
+    runSearch(loose),
+  ].find((l) => l.length);
+  if (f.max) fallback = [...fallback].sort((a, b) => Math.abs(a.price - f.max) - Math.abs(b.price - f.max));
   return {
-    html: `I couldn’t find ${describe(f)} right now. New homes arrive weekly! Here are the closest matches:${cardsHtml(fallback)}`,
+    html: `${plotNote}I couldn’t find ${describe(f)} right now. New homes arrive weekly! Here are the closest matches:${cardsHtml(fallback)}`,
     chips: ['Alert me to new listings', 'Talk to an agent'],
   };
 }
 
-function mortgageReply(price) {
-  const down = price * 0.2;
+/** Indicative bank home finance: 30% down, ~14% (KIBOR-linked), 20 years. */
+function financeReply(price) {
+  const down = price * 0.3;
   const loan = price - down;
-  const r = 0.065 / 12;
-  const n = 360;
+  const r = 0.14 / 12;
+  const n = 240;
   const monthly = (loan * r) / (1 - Math.pow(1 + r, -n));
-  const tax = (price * 0.0115) / 12;
   return {
     html: `For a <strong>${money(price)}</strong> home:<ul>
-      <li>Down payment (20%): <strong>${money(down)}</strong></li>
-      <li>Loan: ${money(loan)} at 6.5% over 30 years</li>
-      <li>Principal &amp; interest: <strong>${money(monthly)}/mo</strong></li>
-      <li>Est. property tax: ~${money(tax)}/mo</li></ul>
-      That’s roughly <strong>${money(monthly + tax)}/mo</strong> all-in. Want an introduction to a lender for pre-approval?`,
+      <li>Down payment (30%): <strong>${money(down)}</strong></li>
+      <li>Financed by the bank: ${money(loan)} at ~14% over 20 years</li>
+      <li>Monthly instalment: <strong>${money(monthly, { exact: true })}</strong></li></ul>
+      This is indicative only. Rates are linked to KIBOR, and the bank decides your actual rate and eligibility. Want an introduction to a bank’s home finance team?`,
     chips: ['Yes, connect me', 'Show homes in budget'],
   };
 }
@@ -207,6 +266,7 @@ function continueFlow(text, raw) {
     const found =
       properties.find((p) => text.includes(normalize(p.title))) ||
       properties.find((p) => normalize(p.title).split(' ').some((w) => w.length > 4 && text.includes(w))) ||
+      properties.find((p) => text.includes(normalize(p.area))) ||
       properties.find((p) => text.includes(normalize(p.city)));
     if (!found && !/not sure|any|dont know|unsure/.test(text))
       return { html: `I couldn’t find that one. Try a name like “Modern Villa”, or tap “Not sure yet”.`, chips: [...properties.filter((p) => p.featured).slice(0, 4).map((p) => p.title), 'Not sure yet'] };
@@ -214,7 +274,7 @@ function continueFlow(text, raw) {
     flow.step = 'day';
     saveFlow();
     return {
-      html: found ? `Great choice: <strong>${escapeHtml(found.title)}</strong> in ${found.city}. When would you like to visit?` : `No problem, an advisor will suggest homes based on your brief. When are you free?`,
+      html: found ? `Great choice: <strong>${escapeHtml(found.title)}</strong> in ${escapeHtml(`${found.area}, ${found.city}`)}. When would you like to visit?` : `No problem, an advisor will suggest homes based on your brief. When are you free?`,
       chips: ['Tomorrow', 'This weekend', 'Next week'],
     };
   }
@@ -222,14 +282,14 @@ function continueFlow(text, raw) {
     flow.day = raw.trim().slice(0, 40);
     flow.step = 'contact';
     saveFlow();
-    return { html: `Perfect. What’s the best email or phone number to confirm your tour?` };
+    return { html: `Perfect. What’s the best email, phone or WhatsApp number to confirm your visit?` };
   }
   if (flow.step === 'contact') {
     const email = raw.match(/\S+@\S+\.\S+/);
     const phone = raw.replace(/[^\d+]/g, '');
     if (!email && phone.length < 7) return { html: `Hmm, that doesn’t look like an email or phone number. Could you try again? (or type “cancel”)` };
     const p = getProperty(flow.property);
-    const agent = getAgent(p?.agent || 'sofia');
+    const agent = getAgent(p?.agent || 'ayesha');
     const ref = 'HV-' + Math.random().toString(36).slice(2, 7).toUpperCase();
     const reply = {
       html: `You’re booked in! ✨<ul>
@@ -238,7 +298,7 @@ function continueFlow(text, raw) {
         <li><strong>Your host:</strong> ${agent.name}</li>
         <li><strong>Reference:</strong> ${ref}</li></ul>
         ${agent.name.split(' ')[0]} will confirm the exact time at <strong>${escapeHtml((email ? email[0] : phone).slice(0, 40))}</strong> within the hour.`,
-      chips: ['Mortgage help', 'Show featured homes', 'That’s all, thanks'],
+      chips: ['Home finance', 'Show featured homes', 'That’s all, thanks'],
     };
     flow = null;
     saveFlow();
@@ -258,24 +318,24 @@ export function respond(raw) {
     if (r) return r;
   }
 
-  // Mortgage maths when a price is mentioned
-  if (/\b(mortgage|monthly|payment|afford|loan|repayment)/.test(text)) {
-    const m = text.match(/\$?\s*([\d.,]+)\s*(k|m|million|mil)?\b/);
-    if (m && parseFloat(m[1]) > 0) return mortgageReply(parseAmount(m[1], m[2], false));
+  // Home finance maths when a price is mentioned ("finance on 3 crore", "installment for 2.5 cr")
+  if (/\b(mortgage|finance|financing|loan|installments?|instalments?|qist|aqsaat|emi|monthly payment|afford|repayment)\b/.test(text) && !/\b(rent|rental|renting|kiraya)\b/.test(text)) {
+    const price = findAmount(text, false, true);
+    if (price) return financeReply(price);
   }
 
   if (/^(yes,? connect me|alert me|alert me to new listings)/.test(text))
     return { html: `Done! An advisor will reach out shortly. You can also leave your details on our <a href="/contact.html">contact page</a> for a faster reply.`, chips: ['Talk to an agent', 'Show featured homes'] };
   if (/^refine search/.test(text))
-    return { html: `Sure! Tell me what to change, e.g. <em>“4 beds in Pasadena under 2.5M”</em> or <em>“apartments to rent with a pool”</em>.` };
+    return { html: `Sure! Tell me what to change, e.g. <em>“4 beds in Bahria Town under 4 crore”</em> or <em>“flat for rent in F-11 under 1.5 lakh”</em>.` };
   if (/^take the quiz/.test(text)) {
     import('./quiz.js').then((m) => m.openQuiz());
     return { html: `Opening the Sitara Match quiz for you ✨` };
   }
-  if (/^show homes in budget/.test(text)) return searchReply({ features: [], status: 'sale', max: 2000000 });
+  if (/^show homes in budget/.test(text)) return searchReply({ features: [], status: 'sale', max: 5e7 });
 
   const f = parseFilters(text);
-  const hasFilter = f.city || f.type || f.beds || f.max || f.min || f.features.length;
+  const hasFilter = f.city || f.area || f.type || f.beds || f.max || f.min || f.features.length;
   const searchy = /\b(show|find|search|looking for|look for|any|homes|houses|properties|listings|available|options|rentals|in|under)\b/.test(text);
   const best = scoreIntents(text);
   const informational = /\b(how|what|process|documents|fees?|steps|why|when|are|is|can|allowed)\b/.test(text);
@@ -289,10 +349,11 @@ export function respond(raw) {
     return { html: best.intent.reply(), chips: best.intent.chips };
   }
   return {
-    html: `I’m not quite sure I caught that 🤔 I can help with <strong>buying</strong>, <strong>renting</strong>, <strong>selling</strong>, <strong>mortgages</strong> and <strong>tours</strong>. Or try a search like <em>“2 bed apartment to rent in Santa Monica”</em>.`,
+    html: `I’m not quite sure I caught that 🤔 I can help with <strong>buying</strong>, <strong>renting</strong>, <strong>selling</strong>, <strong>home finance</strong> and <strong>site visits</strong>. Or try a search like <em>“2 bed flat for rent in F-11”</em>.`,
     chips: START_CHIPS,
   };
 }
+
 
 /* =========================================================
    UI
@@ -359,7 +420,7 @@ function hydrate() {
     const hello = h < 12 ? 'Good morning' : h < 18 ? 'Good afternoon' : 'Good evening';
     addMessage('bot', `${hello}! ☀️ I’m <strong>Halo</strong>, your Sitara assistant.`);
     botReply({
-      html: `Looking to buy, rent or sell? Ask me anything, or try <em>“3 bed villa in Malibu”</em>.`,
+      html: `Looking to buy, rent or sell? Ask me anything, or try <em>“3 bed house in DHA Lahore”</em>.`,
       chips: START_CHIPS,
     });
   }

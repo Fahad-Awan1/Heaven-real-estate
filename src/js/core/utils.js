@@ -8,12 +8,17 @@ export const isMobile = () => window.innerWidth < 768;
 export const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
 export const lerp = (a, b, t) => a + (b - a) * t;
 
-export function money(n, { compact = false } = {}) {
-  if (compact) {
-    if (n >= 1e6) return `$${(n / 1e6).toFixed(n % 1e6 === 0 ? 0 : 2).replace(/\.?0+$/, '')}M`;
-    if (n >= 1e3) return `$${Math.round(n / 1e3)}K`;
-  }
-  return '$' + Math.round(n).toLocaleString('en-US');
+/**
+ * Pakistani rupees, quoted the way Pakistanis do: crore (1,00,00,000) and lakh (1,00,000).
+ * `compact` shortens the unit ("PKR 4.5 Cr"); `exact` prints the full figure ("PKR 345,600").
+ */
+export function money(n, { compact = false, exact = false } = {}) {
+  const trim = (v) => v.toFixed(2).replace(/\.?0+$/, '');
+  const v = Math.round(n);
+  if (!exact && v >= 1e7) return `PKR ${trim(v / 1e7)} ${compact ? 'Cr' : 'Crore'}`;
+  if (!exact && v >= 1e5) return `PKR ${trim(v / 1e5)} Lakh`;
+  if (!exact && compact && v >= 1e3) return `PKR ${Math.round(v / 1e3)}K`;
+  return 'PKR ' + v.toLocaleString('en-US');
 }
 export const priceLabel = (p) => (p.status === 'rent' ? `${money(p.price)}<small> /mo</small>` : money(p.price));
 

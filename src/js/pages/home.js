@@ -99,12 +99,12 @@ ScrollTrigger.create({
 
 /* ---------------- Neighbourhoods ---------------- */
 const hoodImg = {
-  'Beverly Hills': 'villa1',
-  Malibu: 'villa5',
-  Pasadena: 'villa2',
-  'Bel Air': 'glass1',
-  'Santa Monica': 'villa3',
-  'Hollywood Hills': 'dusk1',
+  Lahore: 'villa1',
+  Islamabad: 'villa2',
+  Karachi: 'apt1',
+  Galyat: 'villa8',
+  Swat: 'villa9',
+  Hunza: 'villa6',
 };
 $('[data-hoods]').innerHTML = Object.entries(hoodImg)
   .map(([city, image]) => {

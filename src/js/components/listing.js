@@ -5,7 +5,8 @@ import { propertyCard } from './cards.js';
 import { stopScroll, startScroll, ScrollTrigger } from '../core/motion.js';
 
 // Slider position (0–100) ↔ price, on a log scale so both ends are usable.
-const SCALES = { sale: [600000, 6000000], rent: [3000, 20000] };
+// PKR: sale from 1.5 crore to 15 crore, rent from 50,000 to 8 lakh a month
+const SCALES = { sale: [15000000, 150000000], rent: [50000, 800000] };
 const toPrice = (pos, status) => {
   const [lo, hi] = SCALES[status === 'rent' ? 'rent' : 'sale'];
   return Math.round(lo * Math.pow(hi / lo, pos / 100) / 1000) * 1000;
@@ -85,7 +86,7 @@ export function initListing({ lockedStatus = '', limit = 0 } = {}) {
         if (p.status === scale && p.price > state.max) return false;
       }
       if (term) {
-        const hay = [p.title, p.city, p.type, p.address, ...p.tags, ...p.features].join(' ').toLowerCase();
+        const hay = [p.title, p.city, p.area, p.type, p.address, p.size, ...p.tags, ...p.features].join(' ').toLowerCase();
         if (!term.split(/\s+/).every((t) => hay.includes(t))) return false;
       }
       return true;

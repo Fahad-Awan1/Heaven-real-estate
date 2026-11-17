@@ -19,10 +19,10 @@ const STEPS = [
     q: 'Which perfect Sunday sounds most like you?',
     options: [
       ['luxury', 'Sunset by the pool', 'Space, privacy and views'],
-      ['family', 'Backyard games', 'Room to grow, great schools'],
-      ['urban', 'Coffee and galleries', 'Everything within a walk'],
-      ['nature', 'Ocean air and hikes', 'Calm, green and quiet'],
-      ['entertain', 'Long dinners with friends', 'A home made for hosting'],
+      ['family', 'Cricket on the lawn', 'Room to grow, good schools'],
+      ['urban', 'Chai and the markaz', 'Everything within a walk'],
+      ['nature', 'Mountain air and hikes', 'Calm, green and quiet'],
+      ['entertain', 'Dawats with family and friends', 'A home made for hosting'],
     ],
   },
   {
@@ -41,17 +41,17 @@ const STEPS = [
     q: 'What budget feels comfortable?',
     options: (a) =>
       a.status === 'rent'
-        ? [[5000, 'Up to $5K /mo'], [8000, 'Up to $8K /mo'], [12000, 'Up to $12K /mo'], [25000, '$12K+ /mo']]
-        : [[1000000, 'Up to $1M'], [2000000, 'Up to $2M'], [3500000, 'Up to $3.5M'], [8000000, '$3.5M+']],
+        ? [[100000, 'Up to PKR 1 Lakh /mo'], [200000, 'Up to PKR 2 Lakh /mo'], [400000, 'Up to PKR 4 Lakh /mo'], [1000000, 'PKR 4 Lakh+ /mo']]
+        : [[30000000, 'Up to PKR 3 Crore'], [60000000, 'Up to PKR 6 Crore'], [100000000, 'Up to PKR 10 Crore'], [250000000, 'PKR 10 Crore+']],
   },
   {
     key: 'priority',
     q: 'What matters most on your doorstep?',
     options: [
       ['walk', 'Walkability', 'Shops and cafés on foot'],
-      ['schools', 'Great schools', 'Top-rated nearby'],
+      ['schools', 'Good schools', 'Well-known schools nearby'],
       ['quiet', 'Peace and quiet', 'Calm streets'],
-      ['nature', 'Nature', 'Parks, beaches, trails'],
+      ['nature', 'Nature', 'Parks, hills, trails'],
     ],
   },
 ];

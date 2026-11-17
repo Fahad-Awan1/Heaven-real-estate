@@ -10,7 +10,7 @@ export function propertyCard(p, { compareToggle = false, sizes, eager = false, i
   return `
   <article class="p-card" data-id="${p.id}"${index != null ? ` style="--n:${index}"` : ''}>
     <div class="p-card__media">
-      ${img(p.img, `${p.title} in ${p.city}`, { sizes, eager })}
+      ${img(p.img, `${p.title} in ${p.area}, ${p.city}`, { sizes, eager })}
       <div class="p-card__badges">
         <span class="badge ${p.status === 'rent' ? 'badge--accent' : ''}">${p.status === 'rent' ? 'For rent' : 'For sale'}</span>
         ${match ? `<span class="badge badge--match">${match}% match</span>` : ''}
@@ -19,10 +19,10 @@ export function propertyCard(p, { compareToggle = false, sizes, eager = false, i
     <button class="fav-btn ${fav ? 'is-fav' : ''}" type="button" data-fav="${p.id}" aria-pressed="${fav}" aria-label="Save ${escapeHtml(p.title)}">${icons.heart}</button>
     <div class="p-card__body">
       <h3 class="p-card__title"><a class="p-card__link" href="${propertyUrl(p)}">${escapeHtml(p.title)}</a></h3>
-      <p class="p-card__loc">${icons.pin}${escapeHtml(p.city)}, CA</p>
+      <p class="p-card__loc">${icons.pin}${escapeHtml(p.area)}, ${escapeHtml(p.city)}</p>
       <div class="p-card__row">
         <span class="p-card__price">${priceLabel(p)}</span>
-        <span class="specs">${p.beds} beds<i></i>${p.baths} baths<i></i>${p.sqft.toLocaleString()} ft²</span>
+        <span class="specs">${p.beds} beds<i></i>${p.baths} baths<i></i>${escapeHtml(p.size)}</span>
       </div>
       ${
         compareToggle
