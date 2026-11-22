@@ -1,6 +1,6 @@
 # Sitara Group of Builders — Pakistani Builder & Real Estate Website
 
-The website of Sitara Group of Builders, a Lahore-based builder and property advisor (founded 2009) with offices in Lahore, Islamabad and Karachi. Visitors can browse homes for sale and rent across Lahore, Islamabad, Karachi and the northern hill areas, with prices in PKR (lakh/crore) and plot sizes in marla, kanal and square yards.
+The website of Sitara Group of Builders, a Lahore-based builder and property advisor (founded 2009) with offices in DHA Phase 6 and Etihad Town, Lahore, and Sitara Park City, Faisalabad. Visitors can browse homes for sale and rent across Lahore, Islamabad, Karachi and the northern hill areas, with prices in PKR (lakh/crore) and plot sizes in marla, kanal and square yards.
 
 A fast, fully responsive multi-page site with real photography, cinematic scroll animations, an interactive 3D floor plan and a built-in assistant ("Halo").
 

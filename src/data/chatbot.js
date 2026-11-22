@@ -2,8 +2,8 @@
 // scoring (with typo tolerance) in src/js/components/chatbot.js.
 export const START_CHIPS = ['🏡 Buy a home', '🔑 Rent a home', '💰 Sell my home', '📅 Book a tour', '🧮 Home finance', '📞 Contact'];
 
-const UAN = `<a href="tel:+9242111748272">+92 42 111 748 272</a>`;
-const WHATSAPP = `<a href="https://wa.me/923000000100" target="_blank" rel="noopener">+92 300 0000 100</a>`;
+const UAN = `<a href="tel:+923049726400">0304 9726400</a>`;
+const WHATSAPP = `<a href="https://wa.me/923049726400" target="_blank" rel="noopener">0304 9726400</a>`;
 
 export const intents = [
   {
@@ -38,7 +38,7 @@ export const intents = [
     id: 'identity',
     keywords: ['who are you', 'are you human', 'are you a bot', 'robot', 'ai', 'your name', 'real person'],
     reply: () =>
-      `I’m Halo, Sitara’s virtual assistant. I’m not a human, but I know our listings inside out. If you’d like a real person, call our UAN ${UAN} or WhatsApp ${WHATSAPP}.`,
+      `I’m Halo, Sitara’s virtual assistant. I’m not a human, but I know our listings inside out. If you’d like a real person, call us on ${UAN} or WhatsApp ${WHATSAPP}.`,
     chips: ['Talk to an agent', 'Search homes'],
   },
   {
@@ -118,10 +118,10 @@ export const intents = [
     id: 'contact',
     keywords: ['contact', 'phone', 'email', 'call', 'number', 'address', 'office', 'where are you', 'located', 'location of office', 'reach you', 'whatsapp', 'uan'],
     reply: () => `You can reach us any of these ways:<ul>
-      <li>📞 UAN ${UAN}</li>
+      <li>📞 Call ${UAN}</li>
       <li>💬 WhatsApp ${WHATSAPP}</li>
-      <li>✉️ <a href="mailto:hello@sitarabuilders.com">hello@sitarabuilders.com</a></li>
-      <li>📍 Head office: Main Boulevard, DHA Phase 6, Lahore. Also in Blue Area, Islamabad and Clifton, Karachi</li></ul>
+      <li>✉️ <a href="mailto:sitaragroupofbuilder@gmail.com">sitaragroupofbuilder@gmail.com</a></li>
+      <li>📍 Head office: Commercial Area, Sector A, Phase 6, near DHA Main Office, Lahore</li><li>📍 Etihad Town Phase 2, Lahore</li><li>📍 Sitara Park City, Jaranwala Road, Faisalabad</li></ul>
       Or send a message through our <a href="/contact.html">contact page</a>.`,
     chips: ['Opening hours', 'Book a tour'],
   },
@@ -129,7 +129,7 @@ export const intents = [
     id: 'hours',
     keywords: ['hours', 'open', 'opening', 'closing', 'time', 'sunday', 'saturday', 'friday', 'jummah', 'jumma', 'weekend', 'when are you open', 'timings', 'timing'],
     reply: () =>
-      `Our offices in Lahore, Islamabad and Karachi are open <strong>Mon–Sat, 10am – 7pm</strong>, with a break on Friday for Jumu’ah (1–2:30pm). We’re closed on Sunday, but I’m here 24/7. 🌙`,
+      `Our offices in Lahore and Faisalabad are open <strong>Mon–Sat, 10am – 7pm</strong>, with a break on Friday for Jumu’ah (1–2:30pm). We’re closed on Sunday, but I’m here 24/7. 🌙`,
     chips: ['Book a tour', 'Contact'],
   },
   {
