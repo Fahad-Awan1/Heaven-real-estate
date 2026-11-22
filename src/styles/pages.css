@@ -153,7 +153,7 @@ body[data-header='light'] .site-header:not(.is-scrolled) .btn--ghost {
 .price-filter label {
   display: flex;
   justify-content: space-between;
-  font-size: 0.78rem;
+  font-size: 0.84rem;
   color: var(--text-soft);
 }
 .price-filter output {
@@ -745,8 +745,9 @@ body[data-header='light'] .site-header:not(.is-scrolled) .btn--ghost {
 }
 .donut__center strong {
   font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 2rem;
+  font-weight: 440;
+  font-size: 1.2rem;
+  padding-inline: 26px;
   line-height: 1;
 }
 .donut__center span {
@@ -847,7 +848,7 @@ body[data-header='light'] .site-header:not(.is-scrolled) .btn--ghost {
   display: grid;
   justify-items: center;
   gap: 2px;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: var(--text-soft);
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
@@ -943,7 +944,7 @@ body[data-header='light'] .site-header:not(.is-scrolled) .btn--ghost {
   font-family: var(--font-display);
   font-size: clamp(2.6rem, 6vw, 4.2rem);
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.015em;
 }
 .valuation__range {
   color: #c5b8a8;
@@ -991,7 +992,7 @@ body[data-header='light'] .site-header:not(.is-scrolled) .btn--ghost {
   font-family: var(--font-display);
   font-size: clamp(1.6rem, 1rem + 2.4vw, 3rem);
   line-height: 1.2;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 .collage {
   display: grid;
@@ -1444,7 +1445,7 @@ body[data-header='light'] .site-header:not(.is-scrolled) .btn--ghost {
   font-family: var(--font-display);
   font-size: clamp(4rem, 12vw, 8rem);
   line-height: 0.8;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.03em;
   background: linear-gradient(180deg, var(--sunset), var(--amber) 60%, transparent);
   -webkit-background-clip: text;
   background-clip: text;
@@ -1601,7 +1602,7 @@ body[data-header='light'] .site-header:not(.is-scrolled) .btn--ghost {
   color: var(--ink);
 }
 .ceo__tag > span:last-child {
-  color: #6f655b;
+  color: #554c43;
 }
 
 .ceo--next {
@@ -1658,8 +1659,8 @@ body[data-header='light'] .site-header:not(.is-scrolled) .btn--ghost {
   line-height: 1.15;
 }
 .leader figcaption span {
-  font-size: 0.75rem;
-  color: #6f655b;
+  font-size: 0.8rem;
+  color: #554c43;
 }
 @media (max-width: 600px) {
   .leaders {
@@ -1679,6 +1680,6 @@ body[data-header='light'] .site-header:not(.is-scrolled) .btn--ghost {
     font-size: 0.86rem;
   }
   .leader figcaption span {
-    font-size: 0.66rem;
+    font-size: 0.75rem;
   }
 }

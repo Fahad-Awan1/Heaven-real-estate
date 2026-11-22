@@ -225,7 +225,7 @@ export const intents = [
     id: 'about',
     keywords: ['about', 'about sitara', 'company', 'who is sitara', 'sitara group', 'builders', 'builder', 'history', 'founded', 'story', 'founder', 'ceo', 'owner', 'chairman'],
     reply: () =>
-      `Sitara Group of Builders was founded in Lahore in 2009 by Malik Akbar Awan, and today is led by our CEO, Malik Awais Awan. We build homes and also help families buy, sell and rent. Our founder’s promise, to build every home as if his own family would live in it, still guides every project: 14 projects delivered, 92% handed over on time, and over 650 families housed. Read <a href="/about.html">our story</a>.`,
+      `Sitara Group of Builders was founded in Lahore in 2009 by Malik Akbar Awan, and today is led by our CEO, Malik Awais Awan. We build homes and also help families buy, sell and rent. Our founder’s promise, to build every home as if his own family would live in it, still guides every project: 100+ projects delivered, 92% handed over on time, and over 1000+ families housed. Read <a href="/about.html">our story</a>.`,
   },
   {
     id: 'featured',

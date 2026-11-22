@@ -55,7 +55,7 @@
   pointer-events: none;
   background:
     linear-gradient(180deg, rgba(255, 238, 218, 0.7), rgba(255, 238, 218, 0) 20%),
-    linear-gradient(90deg, rgba(255, 238, 218, 0.78), rgba(255, 238, 218, 0.5) 34%, rgba(255, 238, 218, 0) 62%),
+    linear-gradient(90deg, rgba(255, 240, 222, 0.9), rgba(255, 240, 222, 0.72) 36%, rgba(255, 240, 222, 0) 66%),
     linear-gradient(0deg, rgba(40, 24, 12, 0.35), transparent 30%);
 }
 
@@ -72,7 +72,7 @@
 .hero__title {
   font-size: var(--fs-hero);
   line-height: 0.98;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.015em;
   max-width: 11ch;
 }
 .hero__sub {
@@ -108,8 +108,8 @@
   display: inline-flex;
   align-items: center;
   gap: 14px;
-  font-size: 0.68rem;
-  letter-spacing: 0.32em;
+  font-size: 0.76rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--h-text);
   opacity: 0.85;
@@ -138,7 +138,7 @@
 @media (max-width: 900px) {
   /* copy sits above the photo on narrow screens: shade top-down instead */
   .hero__shade {
-    background: linear-gradient(180deg, rgba(255, 238, 218, 0.82), rgba(255, 238, 218, 0.55) 42%, rgba(255, 238, 218, 0) 64%);
+    background: linear-gradient(180deg, rgba(255, 240, 222, 0.92), rgba(255, 240, 222, 0.78) 50%, rgba(255, 240, 222, 0.2) 78%);
   }
   .hero__img {
     object-position: 28% 70%;
@@ -192,7 +192,7 @@
     font-size: 1.15rem;
   }
   .stat-chip span {
-    font-size: 0.72rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -246,7 +246,7 @@
   border-left: 1px solid var(--line);
 }
 .qs-field label {
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   color: var(--text-soft);
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -323,7 +323,7 @@
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 1.1rem + 2.1vw, 3rem);
   line-height: 1.14;
-  letter-spacing: -0.022em;
+  letter-spacing: -0.01em;
   font-variation-settings: 'opsz' 96;
 }
 .intro__statement em {
@@ -426,7 +426,7 @@
   font-weight: 400;
   font-size: clamp(2rem, 3.4vw, 2.8rem);
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.015em;
 }
 .intro__badge > span {
   font-size: 0.85rem;
@@ -510,7 +510,7 @@
 .story {
   --story-bg: #f1ebe3;
   --story-text: #1e1b18;
-  --story-soft: #6f655b;
+  --story-soft: #554c43;
   background: var(--story-bg);
   color: var(--story-text);
   transition: background-color 1s var(--ease-out), color 1s;
@@ -605,7 +605,7 @@
   gap: 8px;
   padding: 14px 0;
   border-top: 1px solid color-mix(in srgb, var(--story-text) 14%, transparent);
-  opacity: 0.38;
+  opacity: 0.62;
   transition: opacity 0.5s;
 }
 .story__steps li.is-active {
@@ -759,8 +759,8 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   margin-top: 14px;
-  font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.96);
 }
 .vibe-bar {
   height: 3px;

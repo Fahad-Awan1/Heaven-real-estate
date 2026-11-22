@@ -95,7 +95,7 @@
   border-radius: 9px;
   background: var(--sunset);
   color: #fff;
-  font-size: 0.68rem;
+  font-size: 0.76rem;
   font-weight: 600;
   display: grid;
   place-items: center;
@@ -147,7 +147,7 @@
   gap: 10px;
   font-family: var(--font-display);
   font-size: 1.45rem;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   font-variation-settings: 'opsz' 72;
 }
 .logo svg {
@@ -174,9 +174,9 @@
 }
 .logo__word small {
   font-family: var(--font-body);
-  font-size: 0.56rem;
+  font-size: 0.62rem;
   font-weight: 500;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   margin-top: 4px;
   opacity: 0.75;
@@ -365,7 +365,7 @@ a:focus-visible > .roll > span {
   border-bottom: 1px solid rgba(246, 239, 230, 0.12);
 }
 .mm__num {
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   letter-spacing: 0.08em;
   color: #8d8174;
   font-variant-numeric: tabular-nums;
@@ -375,12 +375,12 @@ a:focus-visible > .roll > span {
   font-family: var(--font-display);
   font-size: clamp(1.9rem, 8.5vw, 2.6rem);
   line-height: 1;
-  letter-spacing: -0.02em;
-  font-variation-settings: 'opsz' 144;
+  letter-spacing: -0.01em;
+  font-variation-settings: 'opsz' 72;
 }
 .mm__label small {
   font-family: var(--font-body);
-  font-size: 0.78rem;
+  font-size: 0.84rem;
   letter-spacing: 0;
   color: #a3968a;
   margin-top: 6px;
@@ -488,8 +488,8 @@ a:focus-visible > .roll > span {
   gap: 6px;
 }
 .mm__eyebrow {
-  font-size: 0.68rem;
-  letter-spacing: 0.28em;
+  font-size: 0.76rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--amber);
 }
@@ -608,7 +608,7 @@ a:focus-visible > .roll > span {
   height: 28px;
   padding-inline: 12px;
   border-radius: var(--pill);
-  font-size: 0.74rem;
+  font-size: 0.8rem;
   font-weight: 500;
   background: rgba(255, 250, 244, 0.88);
   color: var(--ink);
@@ -780,7 +780,7 @@ a:focus-visible > .roll > span {
 }
 .stat-chip span {
   font-size: 0.8rem;
-  color: #6f655b;
+  color: #554c43;
 }
 
 .chip {
@@ -867,7 +867,7 @@ a:focus-visible > .roll > span {
   gap: 48px;
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 4vw, 3.4rem);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   white-space: nowrap;
 }
 .marquee__item::after {
@@ -927,7 +927,7 @@ a:focus-visible > .roll > span {
 .footer-col h2 {
   font-family: var(--font-body);
   font-size: var(--fs-xs);
-  letter-spacing: 0.28em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #b3a698;
   margin-bottom: 18px;
@@ -979,7 +979,7 @@ a:focus-visible > .roll > span {
   font-family: var(--font-display);
   font-size: clamp(5rem, 22vw, 20rem);
   line-height: 0.8;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.025em;
   text-align: center;
   margin-top: clamp(48px, 7vw, 96px);
   background: linear-gradient(180deg, #f3ece3 10%, rgba(243, 236, 227, 0.05) 95%);
@@ -1064,7 +1064,7 @@ a:focus-visible > .roll > span {
   left: var(--gutter);
   bottom: calc(var(--gutter) + 6px);
   font-size: var(--fs-xs);
-  letter-spacing: 0.32em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--text-soft);
 }
@@ -1075,7 +1075,7 @@ a:focus-visible > .roll > span {
   font-family: var(--font-display);
   font-size: clamp(4rem, 14vw, 11rem);
   line-height: 0.8;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
 }
 .preloader__bar {
@@ -1508,7 +1508,7 @@ input[type='range'] {
   font-size: 1.15rem;
 }
 .chat__title span {
-  font-size: 0.78rem;
+  font-size: 0.84rem;
   color: #b3a698;
   display: flex;
   align-items: center;
@@ -1607,7 +1607,7 @@ input[type='range'] {
   font-weight: 600;
 }
 .msg-card span {
-  font-size: 0.78rem;
+  font-size: 0.84rem;
   color: var(--text-soft);
 }
 .typing {
@@ -1970,7 +1970,7 @@ input[type='range'] {
   height: 32px;
   padding-inline: 12px;
   border-radius: var(--pill);
-  font-size: 0.76rem;
+  font-size: 0.82rem;
   font-weight: 500;
   color: #3a342e;
   transition: background-color 0.3s, color 0.3s;
@@ -2143,7 +2143,7 @@ input[type='range'] {
   font-weight: 400;
   font-size: clamp(2.6rem, 5vw, 4.4rem);
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.015em;
 }
 .stat > span {
   color: var(--text-soft);
@@ -2195,7 +2195,7 @@ input[type='range'] {
 }
 .service h3 {
   font-size: clamp(2.2rem, 4vw, 3.2rem);
-  font-variation-settings: 'opsz' 144;
+  font-variation-settings: 'opsz' 72;
 }
 .service p {
   color: var(--text-soft);
@@ -2242,7 +2242,7 @@ input[type='range'] {
   font-family: var(--font-display);
   font-size: clamp(1.7rem, 1rem + 3vw, 3.6rem);
   line-height: 1.12;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   max-width: 24ch;
 }
 .t-slide figcaption {
